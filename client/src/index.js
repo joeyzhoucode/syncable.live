@@ -1,21 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
+import configureStore from "./store/configureStore";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
-
-// core components
-import Home from "./layouts/Home.jsx";
+import Root from "./components/root.jsx";
 
 import "./assets/css/material-dashboard-react.css?v=0.1.0";
 
+const store = configureStore();
 const hist = createBrowserHistory();
 
-ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-      <Route path="/home" component={Home} />
-      <Redirect from="/" to="/home/player" />
-    </Switch>
-  </Router>,
-  document.getElementById("root")
-);
+render(<Root store={store} history={hist} />, document.getElementById("root"));

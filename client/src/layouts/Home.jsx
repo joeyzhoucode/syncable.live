@@ -1,5 +1,8 @@
 /* eslint-disable */
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as dashboardActions from "../actions/dashboardActions";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -15,8 +18,6 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 import routes from "routes.js";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
-
-import image from "assets/img/faces/zhou.png";
 
 import SyncConnection from "services/SyncConnection.js";
 const syncConnection = new SyncConnection(1, data => {
@@ -41,22 +42,9 @@ const switchRoutes = (
 );
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      image: image,
-      color: "purple",
-      hasImage: true,
-      fixedClasses: "dropdown show",
-      mobileOpen: false
-    };
-  }
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
   resizeFunction = () => {
     if (window.innerWidth >= 960) {
-      this.setState({ mobileOpen: false });
+      this.props.dashboardActions.dashboardDrawerClose();
     }
   };
   componentDidMount() {
@@ -68,8 +56,8 @@ class Dashboard extends React.Component {
   componentDidUpdate(e) {
     if (e.history.location.pathname !== e.location.pathname) {
       this.refs.mainPanel.scrollTop = 0;
-      if (this.state.mobileOpen) {
-        this.setState({ mobileOpen: false });
+      if (this.props.dashboard.mobileOpen) {
+        this.props.dashboardActions.dashboardDrawerClose();
       }
     }
   }
@@ -83,16 +71,16 @@ class Dashboard extends React.Component {
         {<Sidebar
           routes={routes}
           logoText={"Yi Zhou"}
-          logo={this.state.image}
-          handleDrawerToggle={this.handleDrawerToggle}
-          open={this.state.mobileOpen}
-          color={this.state.color}
+          logo={this.props.dashboard.image}
+          handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
+          open={this.props.dashboard.mobileOpen}
+          color={this.props.dashboard.color}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">
           <Navbar
             routes={routes}
-            handleDrawerToggle={this.handleDrawerToggle}
+            handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
             {...rest}
           />
           <div className={classes.content}>
@@ -109,4 +97,15 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(dashboardStyle)(Dashboard);
+function mapStateToProps(state) {
+  return {
+    dashboard: state.dashboard
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dashboardActions: bindActionCreators(dashboardActions, dispatch)
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(Dashboard));
