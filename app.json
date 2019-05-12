@@ -1,0 +1,25 @@
+{
+  "name": "Rails + React + ActiveAdmin",
+  "description": "Create React App with Rails 5 API and ActiveAdmin on Heroku",
+  "repository": "https://github.com/joeyzhoucode",
+  "keywords": [
+    "rails",
+    "react",
+    "activeadmin",
+    "syncable.live"
+  ],
+  "scripts": {
+    "postdeploy": "bundle exec rake db:seed"
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}

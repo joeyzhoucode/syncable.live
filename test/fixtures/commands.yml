@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  video_id: MyString
+  seek_seconds: 1
+  state: MyString
+  created: 2019-05-11 22:58:41
+
+two:
+  video_id: MyString
+  seek_seconds: 1
+  state: MyString
+  created: 2019-05-11 22:58:41

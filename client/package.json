@@ -1,0 +1,43 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "proxy": "http://localhost:3001",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@material-ui/core": "^3.9.3",
+    "@material-ui/icons": "3.0.2",
+    "chartist": "0.10.1",
+    "classnames": "2.2.6",
+    "history": "4.7.2",
+    "perfect-scrollbar": "1.4.0",
+    "prettier": "1.16.4",
+    "prop-types": "15.7.1",
+    "react": "^16.3.2",
+    "react-chartist": "0.13.3",
+    "react-dom": "^16.3.2",
+    "react-google-maps": "9.4.5",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.1.4",
+    "react-swipeable-views": "0.13.1",
+    "semantic-ui-css": "^2.3.1",
+    "semantic-ui-react": "^0.80.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "build-package-css": "cp src/assets/css/material-dashboard-react.css dist/material-dashboard-react.css",
+    "build-package": "npm run build-package-css && babel src --out-dir dist"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1",
+    "eslint-config-prettier": "4.0.0",
+    "eslint-plugin-prettier": "3.0.1"
+  }
+}
