@@ -31,7 +31,7 @@ function Player(props) {
         </p>
       </CardHeader>
       <CardBody>
-        <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' width='100%' height='720px' playing />
+        <ReactPlayer url='https://www.twitch.tv/overwatchleague' width='100%' height='720px' pip playing />
         <RegularButton color='white' justIcon round>
           <PlayArrow />
         </RegularButton>

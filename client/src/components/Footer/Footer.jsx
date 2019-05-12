@@ -42,7 +42,7 @@ function Footer({ ...props }) {
             <a href="https://github.com/joeyzhoucode" className={classes.a}>
               Yi Zhou
             </a>
-            , made with love for a connect experience
+            , made with love
           </span>
         </p>
       </div>
