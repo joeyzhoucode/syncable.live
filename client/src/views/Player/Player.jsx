@@ -15,6 +15,10 @@ import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx
 
 function Player(props) {
   const { classes } = props;
+
+  // let handlePlay = () => {
+  //   syncConnection.talk("Play", "Cineplex");
+  // };
   return (
     <Card>
       <CardHeader color="primary">
@@ -31,13 +35,23 @@ function Player(props) {
         </p>
       </CardHeader>
       <CardBody>
-        <ReactPlayer url='https://www.twitch.tv/overwatchleague' width='100%' height='720px' pip playing />
-        <RegularButton color='white' justIcon round>
-          <PlayArrow />
-        </RegularButton>
-        <RegularButton color='white' justIcon round>
-          <Pause />
-        </RegularButton>
+        <ReactPlayer
+          url='https://www.youtube.com/watch?v=2S24-y0Ij3Y'
+          width='100%'
+          height='720px'
+          volume={0}
+          config={{
+            youtube: {
+              playerVars: { showinfo: 0 }
+            },
+          }}
+        />
+      <RegularButton color='white' justIcon round>
+        <PlayArrow />
+      </RegularButton>
+      <RegularButton color='white' justIcon round>
+        <Pause />
+      </RegularButton>
       </CardBody>
     </Card>
   );

@@ -11,13 +11,18 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Navbar from "components/Navbars/Navbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import CableConnection from "services/CableConnection.js";
 
 import routes from "routes.js";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 
 import image from "assets/img/faces/zhou.png";
+
+import SyncConnection from "services/SyncConnection.js";
+const syncConnection = new SyncConnection(1, data => {
+  console.log(data);
+});
+syncConnection.openNewTheatre("Cineplex");
 
 const switchRoutes = (
   <Switch>
@@ -35,11 +40,6 @@ const switchRoutes = (
   </Switch>
 );
 
-let callback = data => {
-  console.log(data);
-}
-let conn = new CableConnection(1, callback);
-
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -51,34 +51,15 @@ class Dashboard extends React.Component {
       mobileOpen: false
     };
   }
-  handleImageClick = image => {
-    this.setState({ image: image });
-  };
-  handleColorClick = color => {
-    conn.talk("hello", "Cineplex");
-
-    this.setState({ color: color });
-  };
-  handleFixedClick = () => {
-    if (this.state.fixedClasses === "dropdown") {
-      this.setState({ fixedClasses: "dropdown show" });
-    } else {
-      this.setState({ fixedClasses: "dropdown" });
-    }
-  };
   handleDrawerToggle = () => {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
-  getRoute() {
-    return this.props.location.pathname !== "/home/maps";
-  }
   resizeFunction = () => {
     if (window.innerWidth >= 960) {
       this.setState({ mobileOpen: false });
     }
   };
   componentDidMount() {
-    conn.openNewTheatre("Cineplex");
     if (navigator.platform.indexOf("Win") > -1) {
       const ps = new PerfectScrollbar(this.refs.mainPanel);
     }
