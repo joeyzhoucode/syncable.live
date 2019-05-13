@@ -1,6 +1,6 @@
 import ActionCable from 'actioncable'
 
-const BASE_URL = "localhost:3001";
+const BASE_URL = "obscure-meadow-57392.herokuapp.com";
 const ACCESS_TOKEN = "access_token";
 const CLIENT = "client";
 

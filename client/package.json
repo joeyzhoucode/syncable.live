@@ -10,7 +10,7 @@
     "@material-ui/icons": "3.0.2",
     "chartist": "0.10.1",
     "classnames": "2.2.6",
-    "eslint": "^5.16.0",
+    "eslint": "5.0.0",
     "history": "4.7.2",
     "perfect-scrollbar": "1.4.0",
     "prettier": "1.16.4",
