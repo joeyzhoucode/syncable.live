@@ -10,8 +10,9 @@ export default {
   },
   player: {
     connection: null,
-    videoId: "https://www.twitch.tv/overwatchleague",
+    videoId: "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
     videoSeek: null,
     videoState: "pause",
+    player: null,
   }
 };

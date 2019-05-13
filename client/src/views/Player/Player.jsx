@@ -16,10 +16,10 @@ import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx
 
 class Player extends React.Component {
   componentDidMount() {
-    this.props.playerMount(1, this.props.playerUpdate);
+    this.props.playerMount(1, this.props.playerUpdate, this.player);
   }
   render() {
-    const { classes, ...rest } = this.props;
+    const { classes, ..._rest } = this.props;
     return(
       <Card>
         <CardHeader color="primary">
@@ -44,9 +44,8 @@ class Player extends React.Component {
             playing={this.props.videoState === "play"}
             controls={true}
             onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}
-            onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
-            onSeek={(seconds) => { this.props.playerCommand({ videoSeek: seconds }) }}
-            // ref={(reactPlayer) => { console.log(input) }}
+            onPause={() => { this.props.playerCommand({ videoState: "pause", videoSeek: this.player.getCurrentTime() }) }}
+            ref={(player) => this.player = player}
           />
         </CardBody>
       </Card>

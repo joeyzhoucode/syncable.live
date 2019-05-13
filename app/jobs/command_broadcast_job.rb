@@ -6,7 +6,7 @@ class CommandBroadcastJob < ApplicationJob
       theatre_code: command.theatre.code,
       video_id: command.video_id,
       seek_seconds: command.seek_seconds,
-      status: command.status,
+      state: command.state,
       viewer: command.viewer,
       audience: command.theatre.viewers.collect(&:id)
     }

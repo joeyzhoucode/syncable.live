@@ -18,10 +18,10 @@ function SyncConnection(viewerId, callback) {
   this.theatreConnections = {}
 }
 
-SyncConnection.prototype.talk = function(message, theatreCode) {
+SyncConnection.prototype.command = function(video_id, seek_seconds, state, theatreCode) {
   let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.speak(message);
+    theatreConnObj.conn.update(video_id, seek_seconds, state);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
@@ -51,10 +51,12 @@ SyncConnection.prototype.createTheatreConnection = function(theatreCode) {
         return scope.callback(data)
       }
     },
-    speak: function(message) {
-      return this.perform('speak', {
+    update: function(video_id, seek_seconds, state) {
+      return this.perform('update', {
         theatre_code: theatreCode,
-        message: message,
+        video_id: video_id,
+        seek_seconds: seek_seconds,
+        state: state,
         viewer: scope.viewerId
       })
     }

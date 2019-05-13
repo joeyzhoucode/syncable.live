@@ -5,7 +5,6 @@ import SyncConnection from "../services/SyncConnection.js";
 
 export default function player(state = initialState.player, action) {
   let newState;
-  console.log(action.type);
   switch (action.type) {
     case PLAYER_MOUNT:
       const syncConnection = new SyncConnection(action.viewerId, action.callback);
@@ -13,20 +12,27 @@ export default function player(state = initialState.player, action) {
       newState = {
         ...state,
         connection: syncConnection,
+        player: action.player,
       }
       return newState;
     case PLAYER_UPDATE:
       newState = {
         ...state,
-        ...action.data,
+        videoId: action.data.video_id,
+        videoSeek: action.data.seek_seconds,
+        videoState: action.data.state,
+      }
+      if(newState.videoSeek !== state.videoSeek) {
+        newState.player.seekTo(newState.videoSeek);
+        newState.videoState = "play";
       }
       return newState;
     case PLAYER_COMMAND:
       newState = {
         ...state,
-        ...action.data,
+        ...action.data
       }
-      state.connection.talk("hello world!", "Cineplex");
+      newState.connection.command(newState.videoId, newState.videoSeek, newState.videoState, "Cineplex");
       return newState;
     default:
       return state;

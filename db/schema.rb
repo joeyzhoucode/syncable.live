@@ -44,12 +44,16 @@ ActiveRecord::Schema.define(version: 2019_05_12_054342) do
   end
 
   create_table "commands", force: :cascade do |t|
+    t.integer "theatre_id"
+    t.integer "viewer_id"
     t.string "video_id"
-    t.integer "seek_seconds"
+    t.decimal "seek_seconds"
     t.string "state"
     t.datetime "created"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["theatre_id"], name: "index_commands_on_theatre_id"
+    t.index ["viewer_id"], name: "index_commands_on_viewer_id"
   end
 
   create_table "messages", force: :cascade do |t|

@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
-export function playerMount(viewerId, callback) {
-  return { type: types.PLAYER_MOUNT, viewerId: viewerId, callback: callback };
+export function playerMount(viewerId, callback, player) {
+  return { type: types.PLAYER_MOUNT, viewerId: viewerId, callback: callback, player: player };
 }
 
 export function playerUpdate(data) {
