@@ -7,5 +7,11 @@ export default {
     hasImage: true,
     fixedClasses: "dropdown show",
     mobileOpen: false
+  },
+  player: {
+    connection: null,
+    videoId: "https://www.twitch.tv/overwatchleague",
+    videoSeek: null,
+    videoState: "pause",
   }
 };

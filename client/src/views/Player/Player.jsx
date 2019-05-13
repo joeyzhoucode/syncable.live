@@ -1,64 +1,69 @@
 import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as playerActions from "../../actions/playerActions";
 import PropTypes from "prop-types";
 import ReactPlayer from 'react-player';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import PlayArrow from "@material-ui/icons/PlayArrow";
-import Pause from "@material-ui/icons/Pause";
+
 // core components
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import RegularButton from "components/CustomButtons/Button.jsx";
 
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
 
-function Player(props) {
-  const { classes } = props;
-
-  // let handlePlay = () => {
-  //   syncConnection.talk("Play", "Cineplex");
-  // };
-  return (
-    <Card>
-      <CardHeader color="primary">
-        <h4 className={classes.cardTitleWhite}>Material Design Icons</h4>
-        <p className={classes.cardCategoryWhite}>
-          Handcrafted by our friends from{" "}
-          <a
-            href="https://design.google.com/icons/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Google
-          </a>
-        </p>
-      </CardHeader>
-      <CardBody>
-        <ReactPlayer
-          url='https://www.youtube.com/watch?v=2S24-y0Ij3Y'
-          width='100%'
-          height='720px'
-          volume={0}
-          config={{
-            youtube: {
-              playerVars: { showinfo: 0 }
-            },
-          }}
-        />
-      <RegularButton color='white' justIcon round>
-        <PlayArrow />
-      </RegularButton>
-      <RegularButton color='white' justIcon round>
-        <Pause />
-      </RegularButton>
-      </CardBody>
-    </Card>
-  );
+class Player extends React.Component {
+  componentDidMount() {
+    this.props.playerMount(1, this.props.playerUpdate);
+  }
+  render() {
+    const { classes, ...rest } = this.props;
+    return(
+      <Card>
+        <CardHeader color="primary">
+          <h4 className={classes.cardTitleWhite}>Material Design Icons</h4>
+          <p className={classes.cardCategoryWhite}>
+            Handcrafted by our friends from{" "}
+            <a
+              href="https://design.google.com/icons/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google
+            </a>
+          </p>
+        </CardHeader>
+        <CardBody>
+          <ReactPlayer
+            url={this.props.videoId}
+            width='100%'
+            height='720px'
+            volume={0}
+            playing={this.props.videoState === "play"}
+            controls={true}
+            onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}
+            onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
+            onSeek={(seconds) => { this.props.playerCommand({ videoSeek: seconds }) }}
+            // ref={(reactPlayer) => { console.log(input) }}
+          />
+        </CardBody>
+      </Card>
+    )
+  }
 }
 
 Player.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(iconsStyle)(Player);
+function mapStateToProps(state) {
+  return {...state.player};
+}
+
+function mapDispatchToProps(dispatch) {
+  return { ...bindActionCreators(playerActions, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(iconsStyle)(Player));

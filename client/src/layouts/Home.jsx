@@ -19,12 +19,6 @@ import routes from "routes.js";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 
-import SyncConnection from "services/SyncConnection.js";
-const syncConnection = new SyncConnection(1, data => {
-  console.log(data);
-});
-syncConnection.openNewTheatre("Cineplex");
-
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
