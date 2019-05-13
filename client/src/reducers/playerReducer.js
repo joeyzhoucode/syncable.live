@@ -24,7 +24,6 @@ export default function player(state = initialState.player, action) {
       }
       if(newState.videoSeek !== state.videoSeek) {
         newState.player.seekTo(newState.videoSeek);
-        newState.videoState = "play";
       }
       return newState;
     case PLAYER_COMMAND:
