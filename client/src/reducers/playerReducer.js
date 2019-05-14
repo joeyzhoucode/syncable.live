@@ -5,7 +5,7 @@ import SyncConnection from "../services/SyncConnection.js";
 
 export default function player(state = initialState.player, action) {
   let newState;
-  switch (action.type) {
+  switch(action.type) {
     case PLAYER_MOUNT:
       const syncConnection = new SyncConnection(action.viewerId, action.callback);
       syncConnection.openNewTheatre("Cineplex");

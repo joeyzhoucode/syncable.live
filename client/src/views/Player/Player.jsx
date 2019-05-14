@@ -15,6 +15,45 @@ import CardBody from "components/Card/CardBody.jsx";
 import iconsStyle from "assets/jss/material-dashboard-react/views/iconsStyle.jsx";
 
 class Player extends React.Component {
+  getInternalPlayer() {
+    if(this.player && this.player.getInternalPlayer()) {
+      return this.player.getInternalPlayer();
+    }
+    return null;
+  }
+
+  getMediaSource() {
+    if(this.player && this.player.player && this.player.player.player) {
+      const source = this.player.player.player.constructor.name;
+      return source;
+    }
+    return null;
+  }
+
+  getTitle() {
+    if(this.getInternalPlayer()) {
+      switch(this.getMediaSource()) {
+        case "Youtube":
+          return this.getInternalPlayer().getVideoData()["title"];
+        default:
+          return "Title";
+      }
+    }
+    return "Title";
+  }
+  
+  getAuthor() {
+    if(this.getInternalPlayer()) {
+      switch(this.getMediaSource()) {
+        case "Youtube":
+          return this.getInternalPlayer().getVideoData()["author"];
+        default:
+          return "Author";
+      }
+    }
+    return "Author";
+  }
+
   componentDidMount() {
     this.props.playerMount(1, this.props.playerUpdate, this.player);
   }
@@ -23,17 +62,8 @@ class Player extends React.Component {
     return(
       <Card>
         <CardHeader color="primary">
-          <h4 className={classes.cardTitleWhite}>Material Design Icons</h4>
-          <p className={classes.cardCategoryWhite}>
-            Handcrafted by our friends from{" "}
-            <a
-              href="https://design.google.com/icons/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Google
-            </a>
-          </p>
+          <h4 className={classes.cardTitleWhite}>{this.getTitle()}</h4>
+          <p className={classes.cardCategoryWhite}>{this.getAuthor()}</p>
         </CardHeader>
         <CardBody>
           <ReactPlayer
