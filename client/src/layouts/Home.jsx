@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as dashboardActions from "../actions/dashboardActions";
+import * as playerActions from "../actions/playerActions";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -67,6 +68,7 @@ class Dashboard extends React.Component {
           logoText={"Yi Zhou"}
           logo={this.props.dashboard.image}
           handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
+          handleSearch={this.props.playerActions.playerCommand}
           open={this.props.dashboard.mobileOpen}
           color={this.props.dashboard.color}
           {...rest}
@@ -75,6 +77,7 @@ class Dashboard extends React.Component {
           <Navbar
             routes={routes}
             handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
+            handleSearch={this.props.playerActions.playerCommand}
             {...rest}
           />
           <div className={classes.content}>
@@ -99,7 +102,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    dashboardActions: bindActionCreators(dashboardActions, dispatch)
+    dashboardActions: bindActionCreators(dashboardActions, dispatch),
+    playerActions: bindActionCreators(playerActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(Dashboard));

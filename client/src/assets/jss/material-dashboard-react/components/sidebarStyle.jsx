@@ -72,7 +72,7 @@ const sidebarStyle = theme => ({
       height: "1px",
       right: "15px",
       width: "calc(100% - 30px)",
-      backgroundColor: "rgba(" + hexToRgb(grayColor[6]) + ", 0.3)"
+      backgroundColor: "rgba(" + hexToRgb(grayColor[2]) + ", 0.3)"
     }
   },
   logoLink: {
@@ -87,7 +87,7 @@ const sidebarStyle = theme => ({
     textDecoration: "none",
     backgroundColor: "transparent",
     "&,&:hover": {
-      color: grayColor[6]
+      color: grayColor[2]
     }
   },
   logoLinkRTL: {
@@ -142,7 +142,7 @@ const sidebarStyle = theme => ({
     display: "block",
     textDecoration: "none",
     "&:hover,&:focus,&:visited,&": {
-      color: grayColor[6]
+      color: grayColor[2]
     }
   },
   itemLink: {
@@ -165,7 +165,7 @@ const sidebarStyle = theme => ({
     marginRight: "15px",
     textAlign: "center",
     verticalAlign: "middle",
-    color: "rgba(" + hexToRgb(grayColor[6]) + ", 0.8)"
+    color: "rgba(" + hexToRgb(grayColor[2]) + ", 0.8)"
   },
   itemIconRTL: {
     marginRight: "3px",
@@ -177,7 +177,7 @@ const sidebarStyle = theme => ({
     margin: "0",
     lineHeight: "30px",
     fontSize: "14px",
-    color: grayColor[6]
+    color: grayColor[2]
   },
   itemTextRTL: {
     textAlign: "right"
