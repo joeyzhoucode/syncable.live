@@ -40,7 +40,7 @@ class Player extends React.Component {
             url={this.props.videoId}
             width='100%'
             height='720px'
-            volume={0}
+            volume={1}
             playing={this.props.videoState === "play"}
             controls={true}
             onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}

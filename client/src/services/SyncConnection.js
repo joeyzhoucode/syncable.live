@@ -1,6 +1,6 @@
 import ActionCable from 'actioncable'
 
-const BASE_URL = "obscure-meadow-57392.herokuapp.com"; // "obscure-meadow-57392.herokuapp.com";
+const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "access_token";
 const CLIENT = "client";
 
