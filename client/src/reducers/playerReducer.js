@@ -22,7 +22,7 @@ export default function player(state = initialState.player, action) {
         videoSeek: action.data.seek_seconds,
         videoState: action.data.state,
       }
-      if(newState.videoSeek !== state.videoSeek) {
+      if(parseInt(newState.videoSeek, 10) !== parseInt(state.videoSeek, 10)) {
         newState.player.seekTo(newState.videoSeek);
       }
       return newState;

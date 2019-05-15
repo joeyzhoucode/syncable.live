@@ -73,8 +73,8 @@ class Player extends React.Component {
             volume={1}
             playing={this.props.videoState === "play"}
             controls={true}
-            onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}
-            onPause={() => { this.props.playerCommand({ videoState: "pause", videoSeek: this.player.getCurrentTime() }) }}
+            onPlay={() => { this.props.playerCommand({ videoState: "play", videoSeek: this.player.getCurrentTime() }) }}
+            onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
             ref={(player) => this.player = player}
           />
         </CardBody>
