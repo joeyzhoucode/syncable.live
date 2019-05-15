@@ -6,7 +6,8 @@ import Hidden from "@material-ui/core/Hidden";
 
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import Dashboard from "@material-ui/icons/Dashboard";
+import Home from "@material-ui/icons/Home";
+import VideoLabel from "@material-ui/icons/VideoLabel";
 import Search from "@material-ui/icons/Search";
 // core components
 import CustomInput from "components/CustomInput/CustomInput.jsx";
@@ -49,12 +50,26 @@ function HeaderLinks({...props}) {
         color={"transparent"}
         justIcon={window.innerWidth > 959}
         simple={!(window.innerWidth > 959)}
-        aria-label="Dashboard"
+        aria-label="Player"
         className={classes.buttonLink}
+        href="/player"
       >
-        <Dashboard className={classes.icons} />
+        <VideoLabel className={classes.icons} />
         <Hidden mdUp implementation="css">
-          <p className={classes.linkText}>Dashboard</p>
+          <p className={classes.linkText}>Player</p>
+        </Hidden>
+      </Button>
+      <Button
+        color={"transparent"}
+        justIcon={window.innerWidth > 959}
+        simple={!(window.innerWidth > 959)}
+        aria-label="Home"
+        className={classes.buttonLink}
+        href="/home"
+      >
+        <Home className={classes.icons} />
+        <Hidden mdUp implementation="css">
+          <p className={classes.linkText}>Home</p>
         </Hidden>
       </Button>
       <Button
@@ -63,6 +78,7 @@ function HeaderLinks({...props}) {
         simple={!(window.innerWidth > 959)}
         aria-label="Person"
         className={classes.buttonLink}
+        href="/user"
       >
         <Person className={classes.icons} />
         <Hidden mdUp implementation="css">

@@ -23,15 +23,13 @@ import dashboardStyle from "assets/jss/material-dashboard-react/layouts/dashboar
 const switchRoutes = (
   <Switch>
     {routes.map((prop, key) => {
-      if (prop.layout === "/home") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      }
+      return (
+        <Route
+          path={prop.path}
+          component={prop.component}
+          key={key}
+        />
+      );
     })}
   </Switch>
 );
