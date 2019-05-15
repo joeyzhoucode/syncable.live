@@ -47,7 +47,6 @@ class Dashboard extends React.Component {
     window.addEventListener("resize", this.resizeFunction);
   }
   componentDidUpdate(e) {
-    console.log(e.history);
     if (e.history.location.pathname !== e.location.pathname) {
       this.refs.mainPanel.scrollTop = 0;
       if (this.props.dashboard.mobileOpen) {
