@@ -58,7 +58,7 @@ class Player extends React.Component {
     this.props.playerMount(1, this.props.playerUpdate, this.player);
   }
   render() {
-    const { classes, ..._rest } = this.props;
+    const { classes } = this.props;
     return(
       <Card>
         <CardHeader color="primary">

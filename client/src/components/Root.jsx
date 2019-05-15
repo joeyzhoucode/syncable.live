@@ -10,8 +10,8 @@ const Root = ({ store, history }) => (
   <Provider store={store}>
     <Router history={history}>
       <Switch>
+        <Redirect exact from="/" to="/home" />
         <Route path="/" component={Home} />
-        <Redirect from="/" to="/home" />
       </Switch>
     </Router>
   </Provider>

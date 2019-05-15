@@ -47,7 +47,7 @@ SyncConnection.prototype.createTheatreConnection = function(theatreCode) {
       console.log('disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     received: function(data) {
-      if (data.audience.indexOf(scope.viewerId) != -1) {
+      if (data.audience.indexOf(scope.viewerId) !== -1) {
         return scope.callback(data)
       }
     },
