@@ -33,7 +33,7 @@ class Player extends React.Component {
   getTitle() {
     if(this.getInternalPlayer()) {
       switch(this.getMediaSource()) {
-        case "Youtube":
+        case "YouTube":
           return this.getInternalPlayer().getVideoData()["title"];
         default:
           return "Title";
@@ -45,7 +45,7 @@ class Player extends React.Component {
   getAuthor() {
     if(this.getInternalPlayer()) {
       switch(this.getMediaSource()) {
-        case "Youtube":
+        case "YouTube":
           return this.getInternalPlayer().getVideoData()["author"];
         default:
           return "Author";
