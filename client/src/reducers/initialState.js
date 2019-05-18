@@ -14,5 +14,9 @@ export default {
     videoSeek: null,
     videoState: "pause",
     player: null,
+  },
+  viewer: {
+    name: "Guest",
+    email: "guest@guest.com",
   }
 };

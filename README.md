@@ -1,6 +1,6 @@
 # Syncable.live
 
-This repo serves as a boilerplate for a Rails 5 API + ActiveAdmin + Create React App on Heroku.
+This repo serves as a boilerplate for a Rails 5 API + Create React App on Heroku.
 
 ## Getting started
 

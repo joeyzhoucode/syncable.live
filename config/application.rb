@@ -33,7 +33,14 @@ module Syncable
     config.api_only = true
     config.app_generators.scaffold_controller = :scaffold_controller
 
-    # Middleware for ActiveAdmin
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options]
+      end
+    end
+
+    # Middleware for OmniAuth
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies

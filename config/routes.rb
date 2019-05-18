@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  
   mount ActionCable.server => '/cable'
+
+  # Routes for Google authentication
+  get 'auth/:provider/callback', to: 'sessions#googleAuth'
+  get 'auth/failure', to: redirect('/')
 
   scope '/api' do
     resources :theatres
