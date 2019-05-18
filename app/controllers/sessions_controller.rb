@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
     viewer.google_refresh_token = refresh_token if refresh_token.present?
     viewer.save
 
-    render root_path
+    redirect_to origin
   end
 end
