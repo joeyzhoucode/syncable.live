@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
     refresh_token = access_token.credentials.refresh_token
     viewer.google_refresh_token = refresh_token if refresh_token.present?
     viewer.save
-    render :json => viewer
+
+    render root_path
   end
 end

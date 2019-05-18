@@ -3,5 +3,9 @@ class ApplicationController < ActionController::Base
 
   def login(viewer)
     session[:viewer_id] = viewer.id
-  end 
+  end
+
+  def fallback_index_html
+    render :file => 'public/index.html'
+  end
 end

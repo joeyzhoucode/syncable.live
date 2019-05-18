@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as dashboardActions from "../actions/dashboardActions";
 import * as playerActions from "../actions/playerActions";
-import * as viewerActions from "../actions/viewerActions";
 import PropTypes from "prop-types";
 import { Switch, Route, Redirect } from "react-router-dom";
 // creates a beautiful scrollbar
@@ -63,7 +62,6 @@ class Dashboard extends React.Component {
     const { classes, ...rest } = this.props;
     return (
       <div className={classes.wrapper}>
-        <Button onClick={this.props.viewerActions.viewerLogin} />
         {<Sidebar
           routes={routes}
           logoText={"Yi Zhou"}
@@ -105,7 +103,6 @@ function mapDispatchToProps(dispatch) {
   return {
     dashboardActions: bindActionCreators(dashboardActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch),
-    viewerActions: bindActionCreators(viewerActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(Dashboard));
