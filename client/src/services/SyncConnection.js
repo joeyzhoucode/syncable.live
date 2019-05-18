@@ -1,6 +1,6 @@
 import ActionCable from 'actioncable'
 
-const BASE_URL = "localhost:3001"; // "syncable.live";
+const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "access_token";
 const CLIENT = "client";
 
