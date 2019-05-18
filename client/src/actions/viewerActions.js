@@ -2,7 +2,7 @@ import * as types from './actionTypes';
 
 export function viewerLogin() {
   return dispatch => {
-    return fetch('http://localhost:3001/auth/google_oauth2', {
+    return fetch('/login', {
       method: 'GET',
       mode: 'cors',
       credientials: 'include',

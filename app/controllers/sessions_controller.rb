@@ -1,7 +1,15 @@
 class SessionsController < ApplicationController
-  def googleAuth
-    # Get access tokens from the google server
-    puts request.inspect
+
+  def new
+    request.headers['Access-Control-Allow-Origin'] = '*'
+    request.headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+    request.headers['Access-Control-Request-Method'] = '*'
+    request.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    redirect_to '/auth/google_oauth2'
+  end
+
+  def create
+    origin = request.env['omniauth.origin']
     access_token = request.env["omniauth.auth"]
     viewer = Viewer.from_omniauth(access_token)
     login(viewer)
@@ -14,6 +22,6 @@ class SessionsController < ApplicationController
     refresh_token = access_token.credentials.refresh_token
     viewer.google_refresh_token = refresh_token if refresh_token.present?
     viewer.save
-    render :json => request
+    render :json => viewer
   end
 end
