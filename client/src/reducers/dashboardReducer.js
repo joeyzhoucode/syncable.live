@@ -1,5 +1,5 @@
-import initialState from './initialState';
-import { DASHBOARD_DRAWER_TOGGLE, DASHBOARD_DRAWER_CLOSE } from '../actions/actionTypes';
+import { initialState } from './rootReducer';
+import { DASHBOARD_DRAWER_TOGGLE, DASHBOARD_DRAWER_CLOSE } from '../actions/dashboardActions';
 
 export default function dashboard(state = initialState.dashboard, action) {
   let newState;

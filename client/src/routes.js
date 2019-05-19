@@ -5,11 +5,11 @@ import BubbleChart from "@material-ui/icons/BubbleChart";
 import Notifications from "@material-ui/icons/Notifications";
 
 // core components/views for Home layout
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
-import Player from "views/Player/Player.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
+import DashboardPage from "containers/Dashboard.jsx";
+import UserProfile from "containers/UserProfile.jsx";
+import TableList from "containers/TableList.jsx";
+import Player from "containers/Player.jsx";
+import NotificationsPage from "containers/Notifications.jsx";
 
 const dashboardRoutes = [
   {

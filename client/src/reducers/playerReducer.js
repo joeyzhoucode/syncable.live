@@ -1,17 +1,17 @@
-import initialState from './initialState';
-import { PLAYER_MOUNT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/actionTypes';
+import { initialState } from './rootReducer';
+import { PLAYER_MOUNT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/playerActions';
 
-import SyncConnection from "../services/SyncConnection.js";
+import theatreConnection from "../utils/theatreConnection.js";
 
 export default function player(state = initialState.player, action) {
   let newState;
   switch(action.type) {
     case PLAYER_MOUNT:
-      const syncConnection = new SyncConnection(action.viewerId, action.callback);
-      syncConnection.openNewTheatre("Cineplex");
+      const connection = new theatreConnection(action.viewerId, action.callback);
+      connection.openNewTheatre("Cineplex");
       newState = {
         ...state,
-        connection: syncConnection,
+        connection: connection,
         player: action.player,
       }
       return newState;

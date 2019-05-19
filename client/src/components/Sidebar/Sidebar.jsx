@@ -8,7 +8,7 @@ import Hidden from "@material-ui/core/Hidden";
 // core components
 import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
 
-import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
+import sidebarStyle from "assets/jss/syncable-react/components/sidebarStyle.jsx";
 
 const Sidebar = ({ ...props }) => {
   const { classes, logo, logoText } = props;

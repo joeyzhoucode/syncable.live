@@ -13,7 +13,7 @@ import Search from "@material-ui/icons/Search";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 
-import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
+import headerLinksStyle from "assets/jss/syncable-react/components/headerLinksStyle.jsx";
 
 function HeaderLinks({...props}) {
   const { classes } = props;

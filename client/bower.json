@@ -1,21 +1,11 @@
 {
-  "name": "material-dashboard-react",
-  "homepage": "https://github.com/creativetimofficial/material-dashboard-react",
+  "name": "syncable-client",
+  "homepage": "https://github.com/joeyzhoucode/syncable.live",
   "authors": [
-    "creative-tim"
+    "joeyzhoucode"
   ],
-  "description": "A Badass Material-UI Kit based on Material Design",
+  "description": "Syncable Client based on Material Design",
   "main": "public/index.html",
-  "keywords": [
-    "material",
-    "design",
-    "material-ui",
-    "material",
-    "design",
-    "google",
-    "twitter"
-  ],
-  "license": "Creative TIM License",
   "ignore": [
     "**/.*",
     "node_modules",

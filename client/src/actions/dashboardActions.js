@@ -1,9 +1,10 @@
-import * as types from './actionTypes';
+export const DASHBOARD_DRAWER_TOGGLE = 'DASHBOARD_DRAWER_TOGGLE';
+export const DASHBOARD_DRAWER_CLOSE = 'DASHBOARD_DRAWER_CLOSE';
 
 export function dashboardDrawerToggle() {
-  return { type: types.DASHBOARD_DRAWER_TOGGLE };
+  return { type: DASHBOARD_DRAWER_TOGGLE };
 }
 
 export function dashboardDrawerClose() {
-  return { type: types.DASHBOARD_DRAWER_CLOSE };
+  return { type: DASHBOARD_DRAWER_CLOSE };
 }

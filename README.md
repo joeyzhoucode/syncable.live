@@ -1,6 +1,6 @@
-# Syncable.live
+# syncable.live
 
-This repo serves as a boilerplate for a Rails 5 API + Create React App on Heroku.
+This is the source code for [syncable.live](https://syncable.live/welcome).
 
 ## Getting started
 

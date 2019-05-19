@@ -13,7 +13,7 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import AdminNavbarLinks from "./AdminNavbarLinks.jsx";
 
-import headerStyle from "assets/jss/material-dashboard-react/components/headerStyle.jsx";
+import headerStyle from "assets/jss/syncable-react/components/headerStyle.jsx";
 
 function Header({ ...props }) {
   function makeBrand() {
