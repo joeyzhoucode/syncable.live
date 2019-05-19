@@ -4,14 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as dashboardActions from "../actions/dashboardActions";
 import * as playerActions from "../actions/playerActions";
+import * as profileActions from "../actions/profileActions";
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button";
 // core components
 import Navbar from "components/Navbars/Navbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
@@ -46,6 +46,7 @@ class Navigator extends React.Component {
       const ps = new PerfectScrollbar(this.refs.mainPanel);
     }
     window.addEventListener("resize", this.resizeFunction);
+    this.props.profileActions.profileFetch();
   }
   componentDidUpdate(e) {
     if (e.history.location.pathname !== e.location.pathname) {
@@ -64,8 +65,8 @@ class Navigator extends React.Component {
       <div className={classes.wrapper}>
         {<Sidebar
           routes={routes}
-          logoText={"Yi Zhou"}
-          logo={this.props.dashboard.image}
+          logoText={this.props.profile.firstName}
+          logo={this.props.profile.image}
           handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
           handleSearch={this.props.playerActions.playerCommand}
           open={this.props.dashboard.mobileOpen}
@@ -95,7 +96,8 @@ Navigator.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    dashboard: state.dashboard
+    dashboard: state.dashboard,
+    profile: state.profile
   };
 }
 
@@ -103,6 +105,7 @@ function mapDispatchToProps(dispatch) {
   return {
     dashboardActions: bindActionCreators(dashboardActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch),
+    profileActions: bindActionCreators(profileActions, dispatch),
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(Navigator));

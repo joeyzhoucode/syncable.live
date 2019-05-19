@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_18_173818) do
+ActiveRecord::Schema.define(version: 2019_05_19_191051) do
 
   create_table "commands", force: :cascade do |t|
     t.integer "theatre_id"
@@ -50,12 +50,14 @@ ActiveRecord::Schema.define(version: 2019_05_18_173818) do
   end
 
   create_table "viewers", force: :cascade do |t|
-    t.string "name"
+    t.string "first_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email"
     t.string "google_token"
     t.string "google_refresh_token"
+    t.string "last_name"
+    t.string "image"
   end
 
 end

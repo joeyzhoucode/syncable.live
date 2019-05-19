@@ -7,9 +7,7 @@ import image from "assets/img/faces/zhou.png";
 
 export const initialState = {
   dashboard: {
-    image: image,
     color: "purple",
-    hasImage: true,
     fixedClasses: "dropdown show",
     mobileOpen: false
   },
@@ -21,8 +19,9 @@ export const initialState = {
     player: null,
   },
   profile: {
-    name: "Guest",
-    email: "guest@guest.com",
+    firstName: "John",
+    lastName: "Doe",
+    email: "John@Doe.com",
     image: image,
   }
 };

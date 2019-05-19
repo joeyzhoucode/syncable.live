@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   scope '/api' do
     resources :theatres
+    resources :viewers
   end
 
   get '*path', to: "application#index", constraints: ->(request) do

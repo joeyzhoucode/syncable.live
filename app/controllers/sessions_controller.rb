@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     origin = request.env['omniauth.origin']
     access_token = request.env["omniauth.auth"]
     viewer = Viewer.from_omniauth(access_token)
-    login(viewer)
+    session[:viewer_id] = viewer.id
 
     # Access_token is used to authenticate request made from the rails application to the google server
     viewer.google_token = access_token.credentials.token
@@ -20,5 +20,11 @@ class SessionsController < ApplicationController
     viewer.save
 
     redirect_to '/home'
+  end
+
+  def destroy
+    session.delete(:viewer_id)
+
+    redirect_to '/welcome'
   end
 end

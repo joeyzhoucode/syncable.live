@@ -38,9 +38,6 @@ const styles = {
 };
 
 class Profile extends React.Component {
-  componentDidMount() {
-    this.props.profileFetch();
-  }
   render() {
     const { classes } = this.props;
     return (
@@ -160,16 +157,16 @@ class Profile extends React.Component {
             <Card profile>
               <CardAvatar profile>
                 <a href="#pablo" onClick={e => e.preventDefault()}>
-                  <img src={avatar} alt="..." />
+                  <img src={this.props.image} alt="..." />
                 </a>
               </CardAvatar>
               <CardBody profile>
                 <h6 className={classes.cardCategory}>Developer</h6>
-                <h4 className={classes.cardTitle}>{this.props.name}</h4>
+                <h4 className={classes.cardTitle}>{this.props.firstName + " " + this.props.lastName}</h4>
                 <p className={classes.description}>
                   {this.props.email}
                 </p>
-                <Button color="primary" round>
+                <Button color="primary" href="/logout" round>
                   Log out
                 </Button>
               </CardBody>

@@ -2,7 +2,7 @@ export const PROFILE_FETCH_CALLBACK = 'PROFILE_FETCH_CALLBACK';
 
 export function profileFetch() {
   return dispatch => {
-    return fetch('/api/profile', {
+    return fetch('/api/viewers', {
       method: 'GET',
       mode: 'cors',
       credientials: 'include',
