@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     session[:viewer_id] = viewer.id
   end
 
-  def fallback_index_html
+  def index
     render :file => 'public/index.html'
   end
 end

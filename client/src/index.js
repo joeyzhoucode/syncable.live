@@ -9,4 +9,8 @@ import "./assets/css/material-dashboard-react.css?v=0.1.0";
 const store = configureStore();
 const hist = createBrowserHistory();
 
-render(<Root store={store} history={hist} />, document.getElementById("root"));
+if(window.location.pathname === '/') {
+  window.location.href='/welcome';
+} else {
+  render(<Root store={store} history={hist} />, document.getElementById("root"));
+}

@@ -5,15 +5,18 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/')
+  get 'auth/failure', to: redirect('/welcome')
 
   get 'welcome', to: 'static#index'
+  get '*path', to: redirect('/welcome'), constraints: ->(request) do
+    request.session[:viewer_id].nil?
+  end
 
   scope '/api' do
     resources :theatres
   end
 
-  get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+  get '*path', to: "application#index", constraints: ->(request) do
     !request.xhr? && request.format.html?
   end
 end
