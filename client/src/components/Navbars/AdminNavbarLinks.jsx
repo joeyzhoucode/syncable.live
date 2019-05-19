@@ -78,7 +78,7 @@ function HeaderLinks({...props}) {
         simple={!(window.innerWidth > 959)}
         aria-label="Person"
         className={classes.buttonLink}
-        href="/user"
+        href="/profile"
       >
         <Person className={classes.icons} />
         <Hidden mdUp implementation="css">

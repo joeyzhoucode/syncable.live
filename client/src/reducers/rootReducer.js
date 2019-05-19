@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import dashboard from './dashboardReducer';
 import player from './playerReducer';
+import profile from './profileReducer';
 
 import image from "assets/img/faces/zhou.png";
 
@@ -19,15 +20,17 @@ export const initialState = {
     videoState: "pause",
     player: null,
   },
-  viewer: {
+  profile: {
     name: "Guest",
     email: "guest@guest.com",
+    image: image,
   }
 };
 
 const rootReducer = combineReducers({
   dashboard,
   player,
+  profile,
 })
 
 export default rootReducer;
