@@ -38,7 +38,7 @@ import {
   completedTasksChart
 } from "variables/charts.jsx";
 
-import dashboardStyle from "assets/jss/syncable-react/views/dashboardStyle.jsx";
+import homeStyle from "assets/jss/syncable-react/views/homeStyle.jsx";
 
 class Dashboard extends React.Component {
   state = {
@@ -283,4 +283,4 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(dashboardStyle)(Dashboard);
+export default withStyles(homeStyle)(Dashboard);

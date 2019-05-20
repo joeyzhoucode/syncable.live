@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as dashboardActions from "../actions/dashboardActions";
+import * as homeActions from "../actions/homeActions";
 import * as playerActions from "../actions/playerActions";
 import * as profileActions from "../actions/profileActions";
 import PropTypes from "prop-types";
@@ -19,7 +19,7 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
 
-import dashboardStyle from "assets/jss/syncable-react/layouts/dashboardStyle.jsx";
+import navigatorStyle from "assets/jss/syncable-react/layouts/navigatorStyle.jsx";
 
 const switchRoutes = (
   <Switch>
@@ -38,7 +38,7 @@ const switchRoutes = (
 class Navigator extends React.Component {
   resizeFunction = () => {
     if (window.innerWidth >= 960) {
-      this.props.dashboardActions.dashboardDrawerClose();
+      this.props.homeActions.homeDrawerClose();
     }
   };
   componentDidMount() {
@@ -51,8 +51,8 @@ class Navigator extends React.Component {
   componentDidUpdate(e) {
     if (e.history.location.pathname !== e.location.pathname) {
       this.refs.mainPanel.scrollTop = 0;
-      if (this.props.dashboard.mobileOpen) {
-        this.props.dashboardActions.dashboardDrawerClose();
+      if (this.props.home.mobileOpen) {
+        this.props.homeActions.homeDrawerClose();
       }
     }
   }
@@ -67,16 +67,16 @@ class Navigator extends React.Component {
           routes={routes}
           logoText={this.props.profile.firstName}
           logo={this.props.profile.image}
-          handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
+          handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
           handleSearch={this.props.playerActions.playerCommand}
-          open={this.props.dashboard.mobileOpen}
-          color={this.props.dashboard.color}
+          open={this.props.home.mobileOpen}
+          color={this.props.home.color}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">
           <Navbar
             routes={routes}
-            handleDrawerToggle={this.props.dashboardActions.dashboardDrawerToggle}
+            handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
             handleSearch={this.props.playerActions.playerCommand}
             {...rest}
           />
@@ -96,16 +96,16 @@ Navigator.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    dashboard: state.dashboard,
+    home: state.home,
     profile: state.profile
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    dashboardActions: bindActionCreators(dashboardActions, dispatch),
+    homeActions: bindActionCreators(homeActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch),
     profileActions: bindActionCreators(profileActions, dispatch),
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(dashboardStyle)(Navigator));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(navigatorStyle)(Navigator));

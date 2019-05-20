@@ -16,8 +16,6 @@ import CardAvatar from "components/Card/CardAvatar.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import avatar from "assets/img/faces/zhou.png";
-
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",

@@ -1,16 +1,16 @@
 import { initialState } from './rootReducer';
-import { DASHBOARD_DRAWER_TOGGLE, DASHBOARD_DRAWER_CLOSE } from '../actions/dashboardActions';
+import { HOME_DRAWER_TOGGLE, HOME_DRAWER_CLOSE } from '../actions/homeActions';
 
-export default function dashboard(state = initialState.dashboard, action) {
+export default function home(state = initialState.home, action) {
   let newState;
   switch (action.type) {
-    case DASHBOARD_DRAWER_TOGGLE:
+    case HOME_DRAWER_TOGGLE:
       newState = {
         ...state,
         mobileOpen: !state.mobileOpen,
       }
       return newState;
-    case DASHBOARD_DRAWER_CLOSE:
+    case HOME_DRAWER_CLOSE:
       newState = {
         ...state,
         mobileOpen: false,

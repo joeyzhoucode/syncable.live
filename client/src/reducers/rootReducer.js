@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
-import dashboard from './dashboardReducer';
+import home from './homeReducer';
 import player from './playerReducer';
 import profile from './profileReducer';
 
 import image from "assets/img/faces/zhou.png";
 
 export const initialState = {
-  dashboard: {
+  home: {
     color: "purple",
     fixedClasses: "dropdown show",
     mobileOpen: false
@@ -27,7 +27,7 @@ export const initialState = {
 };
 
 const rootReducer = combineReducers({
-  dashboard,
+  home,
   player,
   profile,
 })

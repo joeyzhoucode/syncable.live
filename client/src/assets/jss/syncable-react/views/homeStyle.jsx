@@ -5,7 +5,7 @@ import {
   hexToRgb
 } from "assets/jss/syncable-react.jsx";
 
-const dashboardStyle = {
+const homeStyle = {
   successText: {
     color: successColor[0]
   },
@@ -79,4 +79,4 @@ const dashboardStyle = {
   }
 };
 
-export default dashboardStyle;
+export default homeStyle;
