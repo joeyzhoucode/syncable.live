@@ -136,7 +136,7 @@ class Home extends React.Component {
                       newTheatreCode={this.props.newTheatreCode}
                       theatreGenerate={this.props.theatreGenerate}
                       theatreCreate={this.props.theatreCreate}
-                      theatreDestory={this.props.theatreDestroy}
+                      theatreDestroy={this.props.theatreDestroy}
                       historyPush={this.props.historyPush}
                     />
                   )
