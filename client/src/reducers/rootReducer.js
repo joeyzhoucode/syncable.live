@@ -13,7 +13,7 @@ export const initialState = {
     newTheatreCode: null,
   },
   player: {
-    videoId: "https://www.youtube.com/watch?v=Y_MkhKaIOQI",
+    videoId: "https://www.youtube.com/watch?v=EoHwMlxmQkE",
     videoState: "pause",
     connection: null,
     player: null,
