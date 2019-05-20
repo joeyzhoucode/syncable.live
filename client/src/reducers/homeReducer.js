@@ -1,5 +1,5 @@
 import { initialState } from './rootReducer';
-import { HOME_DRAWER_TOGGLE, HOME_DRAWER_CLOSE } from '../actions/homeActions';
+import { HOME_DRAWER_TOGGLE, HOME_DRAWER_CLOSE, THEATRE_FETCH_SUCCESS } from '../actions/homeActions';
 
 export default function home(state = initialState.home, action) {
   let newState;
@@ -14,6 +14,12 @@ export default function home(state = initialState.home, action) {
       newState = {
         ...state,
         mobileOpen: false,
+      }
+      return newState;
+    case THEATRE_FETCH_SUCCESS:
+      newState = {
+        ...state,
+        theatres: action.data,
       }
       return newState;
     default:

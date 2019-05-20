@@ -10,12 +10,13 @@ export const initialState = {
   home: {
     color: "purple",
     fixedClasses: "dropdown show",
-    mobileOpen: false
+    mobileOpen: false,
+    theatres: [],
   },
   player: {
-    connection: null,
     videoId: "https://www.youtube.com/watch?v=2S24-y0Ij3Y",
     videoState: "pause",
+    connection: null,
     player: null,
   },
   profile: {

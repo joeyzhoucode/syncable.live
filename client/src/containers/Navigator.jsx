@@ -46,6 +46,7 @@ class Navigator extends React.Component {
     }
     window.addEventListener("resize", this.resizeFunction);
     this.props.profileActions.profileFetch();
+    this.props.homeActions.theatreFetch();
   }
   componentDidUpdate(e) {
     if (e.history.location.pathname !== e.location.pathname) {
