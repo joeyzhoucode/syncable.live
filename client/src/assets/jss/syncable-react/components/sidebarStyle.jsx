@@ -62,7 +62,7 @@ const sidebarStyle = theme => ({
   },
   logo: {
     position: "relative",
-    padding: "15px 15px",
+    padding: "5px 5px",
     zIndex: "4",
     "&:after": {
       content: '""',
@@ -74,6 +74,11 @@ const sidebarStyle = theme => ({
       width: "calc(100% - 30px)",
       backgroundColor: "rgba(" + hexToRgb(grayColor[2]) + ", 0.3)"
     }
+  },
+  logoButton: {
+    padding: "5px 15px",
+    width: "100%",
+    justifyContent: "left",
   },
   logoLink: {
     ...defaultFont,
@@ -90,9 +95,6 @@ const sidebarStyle = theme => ({
       color: grayColor[2]
     }
   },
-  logoLinkRTL: {
-    textAlign: "right"
-  },
   logoImage: {
     width: "30px",
     display: "inline-block",
@@ -100,12 +102,22 @@ const sidebarStyle = theme => ({
     marginLeft: "10px",
     marginRight: "15px"
   },
+  logoText: {
+    ...defaultFont,
+    textTransform: "capitalize",
+    padding: "10px",
+    fontSize: "18px",
+    textAlign: "left",
+    fontWeight: "400",
+    lineHeight: "30px",
+    textDecoration: "none",
+    backgroundColor: "transparent",
+  },
   img: {
-    width: "35px",
+    width: "40px",
     top: "22px",
-    position: "absolute",
     verticalAlign: "middle",
-    border: "0"
+    borderRadius: "100%"
   },
   background: {
     position: "absolute",

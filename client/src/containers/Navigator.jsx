@@ -64,7 +64,7 @@ class Navigator extends React.Component {
       <div className={classes.wrapper}>
         {<Sidebar
           historyPush={this.props.homeActions.historyPush}
-          logoText={this.props.profile.firstName}
+          logoText={this.props.profile.firstName + " " + this.props.profile.lastName}
           logo={this.props.profile.image}
           handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
           handleSearch={this.props.playerActions.playerCommand}

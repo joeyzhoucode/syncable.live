@@ -8,7 +8,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Person from "@material-ui/icons/Person";
 import VideoLabel from "@material-ui/icons/VideoLabel";
 import Home from "@material-ui/icons/Home";
-import Search from "@material-ui/icons/Search";
+import CloudUpload from "@material-ui/icons/CloudUpload";
 // core components
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -26,7 +26,7 @@ function HeaderLinks({...props}) {
             className: classes.margin + " " + classes.search
           }}
           inputProps={{
-            placeholder: "Search",
+            placeholder: "Upload",
             inputProps: {
               "aria-label": "Search"
             }
@@ -43,7 +43,7 @@ function HeaderLinks({...props}) {
           justIcon
           round
         >
-          <Search />
+          <CloudUpload />
         </Button>
       </div>
       <Button

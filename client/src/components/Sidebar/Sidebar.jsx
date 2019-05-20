@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
+import Button from "components/CustomButtons/Button.jsx";
 // core components
 import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
 
@@ -14,17 +15,12 @@ const Sidebar = ({ ...props }) => {
   const { classes, logo, logoText } = props;
   var brand = (
     <div className={classes.logo}>
-      <a
-        href="https://github.com/joeyzhoucode"
-        className={classNames(classes.logoLink, {
-          [classes.logoLinkRTL]: false
-        })}
-      >
-        <div className={classes.logoImage}>
-          <img src={logo} alt="logo" className={classes.img} />
+      <Button onClick={() => { props.historyPush('/profile') }} color="transparent" className={classes.logoButton}>
+        <img src={logo} alt="logo" className={classes.img} />
+        <div className={classes.logoText}>
+          {logoText}
         </div>
-        {logoText}
-      </a>
+      </Button>
     </div>
   );
   return (
@@ -55,11 +51,7 @@ const Sidebar = ({ ...props }) => {
           anchor={"left"}
           variant="permanent"
           open
-          classes={{
-            paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: false
-            })
-          }}
+          classes={{ paper: classNames(classes.drawerPaper) }}
         >
           {brand}
         </Drawer>
