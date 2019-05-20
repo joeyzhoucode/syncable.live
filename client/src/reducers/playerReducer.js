@@ -25,7 +25,7 @@ export default function player(state = initialState.player, action) {
         videoId: videoId,
         videoState: videoState,
       }
-      if(Math.floor(videoSeek) !== Math.floor(state.player.getCurrentTime())) {
+      if(Math.floor(videoSeek/5) !== Math.floor(state.player.getCurrentTime()/5)) {
         newState.player.seekTo(videoSeek);
       }
       return newState;
