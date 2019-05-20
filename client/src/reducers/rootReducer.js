@@ -12,6 +12,7 @@ export const initialState = {
     fixedClasses: "dropdown show",
     mobileOpen: false,
     theatres: [],
+    newTheatreCode: null,
   },
   player: {
     videoId: "https://www.youtube.com/watch?v=2S24-y0Ij3Y",

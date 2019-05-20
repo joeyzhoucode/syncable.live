@@ -1,5 +1,10 @@
 import { initialState } from './rootReducer';
-import { HOME_DRAWER_TOGGLE, HOME_DRAWER_CLOSE, THEATRE_FETCH_SUCCESS } from '../actions/homeActions';
+import { 
+  HOME_DRAWER_TOGGLE,
+  HOME_DRAWER_CLOSE,
+  THEATRE_FETCH_SUCCESS,
+  THEATRE_GENERATE_SUCCESS,
+  } from '../actions/homeActions';
 
 export default function home(state = initialState.home, action) {
   let newState;
@@ -20,6 +25,12 @@ export default function home(state = initialState.home, action) {
       newState = {
         ...state,
         theatres: action.data,
+      }
+      return newState;
+    case THEATRE_GENERATE_SUCCESS:
+      newState = {
+        ...state,
+        newTheatreCode: action.data.code,
       }
       return newState;
     default:

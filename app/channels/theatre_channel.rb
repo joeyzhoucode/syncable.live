@@ -41,7 +41,6 @@ class TheatreChannel < ApplicationCable::Channel
     raise 'No video_id, seek_seconds, or state!' if data['video_id'].blank? && data['seek_seconds'].blank? && data['state'].blank?
 
     # adds the message viewer to the theatre if not already included
-    puts "!!!!!!!!!!!!!!!!!!!!!#{viewer.inspect}!!!!!!!!!!!!!!!!!!!!!"
     theatre.viewers << viewer unless theatre.viewers.include?(viewer)
     # saves the command and its data to the DB
     # Note: this does not broadcast to the clients yet!

@@ -46,7 +46,7 @@ import homeStyle from "assets/jss/syncable-react/views/homeStyle.jsx";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props;
+    this.props.theatreGenerate();
   }
 
   render() {
@@ -145,6 +145,9 @@ class Home extends React.Component {
                       checkedIndexes={[0, 3]}
                       tasksIndexes={[0, 1, 2, 3]}
                       tasks={bugs}
+                      newTheatreCode={this.props.newTheatreCode}
+                      theatreGenerate={this.props.theatreGenerate}
+                      theatreCreate={this.props.theatreCreate}
                     />
                   )
                 },

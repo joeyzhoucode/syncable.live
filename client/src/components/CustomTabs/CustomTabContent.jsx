@@ -51,7 +51,10 @@ class CustomTabContent extends React.Component {
               <Add />
             </TableCell>
             <TableCell className={tableCellClasses}>
-              Create A New Theatre
+              {this.props.newTheatreCode}
+            </TableCell>
+            <TableCell className={tableCellClasses}>
+              {"http://syncable.live/player/" + this.props.newTheatreCode}
             </TableCell>
             <TableCell className={classes.tableActions}>
               <Tooltip
@@ -60,7 +63,7 @@ class CustomTabContent extends React.Component {
                 placement="top"
                 classes={{ tooltip: classes.tooltip }}
               >
-                <IconButton aria-label="Generate New Theatre Code" className={classes.tableActionButton}>
+                <IconButton aria-label="Generate New Theatre Code" className={classes.tableActionButton} onClick={this.props.theatreGenerate}>
                   <Refresh className={classes.tableActionButtonIcon + " " + classes.edit}/>
                 </IconButton>
               </Tooltip>
@@ -70,7 +73,7 @@ class CustomTabContent extends React.Component {
                 placement="top"
                 classes={{ tooltip: classes.tooltip }}
               >
-                <IconButton aria-label="Create New Theatre" className={classes.tableActionButton}>
+                <IconButton aria-label="Create New Theatre" className={classes.tableActionButton} onClick={() => { this.props.theatreCreate(this.props.newTheatreCode) }}>
                   <New className={classes.tableActionButtonIcon + " " + classes.edit}/>
                 </IconButton>
               </Tooltip>
@@ -83,6 +86,9 @@ class CustomTabContent extends React.Component {
               </TableCell>
               <TableCell className={tableCellClasses}>
                 {tasks[value]}
+              </TableCell>
+              <TableCell className={tableCellClasses}>
+                http://syncable.live/player/:code
               </TableCell>
               <TableCell className={classes.tableActions}>
                 <Tooltip

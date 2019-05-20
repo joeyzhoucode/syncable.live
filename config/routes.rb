@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   scope '/api' do
     get 'viewer', to: 'viewers#show'
+    get 'theatres/new', to: 'theatres#new'
     resources :theatres
     resources :viewers
   end
