@@ -1,9 +1,13 @@
+import theatreConnection from "../utils/theatreConnection.js";
+
 export const PLAYER_MOUNT = 'PLAYER_MOUNT';
 export const PLAYER_UPDATE = 'PLAYER_UPDATE';
 export const PLAYER_COMMAND = 'PLAYER_COMMAND';
 
 export function playerMount(viewerId, callback, player) {
-  return { type: PLAYER_MOUNT, viewerId: viewerId, callback: callback, player: player };
+  const connection = new theatreConnection(viewerId, callback);
+  connection.openNewTheatre("Cineplex");
+  return { type: PLAYER_MOUNT, connection: connection, player: player };
 }
 
 export function playerUpdate(data) {

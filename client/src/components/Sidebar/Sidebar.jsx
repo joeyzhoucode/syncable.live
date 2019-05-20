@@ -17,7 +17,7 @@ const Sidebar = ({ ...props }) => {
       <a
         href="https://github.com/joeyzhoucode"
         className={classNames(classes.logoLink, {
-          [classes.logoLinkRTL]: props.rtlActive
+          [classes.logoLinkRTL]: false
         })}
       >
         <div className={classes.logoImage}>
@@ -36,7 +36,7 @@ const Sidebar = ({ ...props }) => {
           open={props.open}
           classes={{
             paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: props.rtlActive
+              [classes.drawerPaperRTL]: false
             })
           }}
           onClose={props.handleDrawerToggle}
@@ -46,7 +46,7 @@ const Sidebar = ({ ...props }) => {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-            <AdminNavbarLinks handleSearch={props.handleSearch} />
+            <AdminNavbarLinks handleSearch={props.handleSearch} historyPush={props.historyPush} />
           </div>
         </Drawer>
       </Hidden>
@@ -57,7 +57,7 @@ const Sidebar = ({ ...props }) => {
           open
           classes={{
             paper: classNames(classes.drawerPaper, {
-              [classes.drawerPaperRTL]: props.rtlActive
+              [classes.drawerPaperRTL]: false
             })
           }}
         >

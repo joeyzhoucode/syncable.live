@@ -7,6 +7,7 @@ export default function profile(state = initialState.profile, action) {
     case PROFILE_FETCH_CALLBACK:
       newState = {
         ...state,
+        id: action.data.id,
         firstName: action.data.first_name,
         lastName: action.data.last_name,
         email: action.data.email,

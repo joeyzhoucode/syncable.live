@@ -1,4 +1,5 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 import home from './homeReducer';
 import player from './playerReducer';
 import profile from './profileReducer';
@@ -19,6 +20,7 @@ export const initialState = {
     player: null,
   },
   profile: {
+    id: 0,
     firstName: "John",
     lastName: "Doe",
     email: "John@Doe.com",
@@ -26,10 +28,9 @@ export const initialState = {
   }
 };
 
-const rootReducer = combineReducers({
+export default(history) => combineReducers({
+  router: connectRouter(history),
   home,
   player,
   profile,
 })
-
-export default rootReducer;

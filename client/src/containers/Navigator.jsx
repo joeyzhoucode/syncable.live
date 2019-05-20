@@ -18,7 +18,6 @@ import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
 import routes from "routes.js";
-
 import navigatorStyle from "assets/jss/syncable-react/layouts/navigatorStyle.jsx";
 
 const switchRoutes = (
@@ -64,7 +63,7 @@ class Navigator extends React.Component {
     return (
       <div className={classes.wrapper}>
         {<Sidebar
-          routes={routes}
+          historyPush={this.props.homeActions.historyPush}
           logoText={this.props.profile.firstName}
           logo={this.props.profile.image}
           handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
@@ -75,7 +74,7 @@ class Navigator extends React.Component {
         />}
         <div className={classes.mainPanel} ref="mainPanel">
           <Navbar
-            routes={routes}
+            historyPush={this.props.homeActions.historyPush}
             handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
             handleSearch={this.props.playerActions.playerCommand}
             {...rest}
@@ -97,7 +96,7 @@ Navigator.propTypes = {
 function mapStateToProps(state) {
   return {
     home: state.home,
-    profile: state.profile
+    profile: state.profile,
   };
 }
 

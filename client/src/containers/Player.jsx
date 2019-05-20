@@ -55,8 +55,9 @@ class Player extends React.Component {
   }
 
   componentDidMount() {
-    this.props.playerMount(1, this.props.playerUpdate, this.player);
+    this.props.playerMount(this.props.profile.id, this.props.playerUpdate, this.player);
   }
+
   render() {
     const { classes } = this.props;
     return(
@@ -67,11 +68,11 @@ class Player extends React.Component {
         </CardHeader>
         <CardBody>
           <ReactPlayer
-            url={this.props.videoId}
+            url={this.props.player.videoId}
             width='100%'
             height='720px'
             volume={1}
-            playing={this.props.videoState === "play"}
+            playing={this.props.player.videoState === "play"}
             controls={true}
             onPlay={() => { this.props.playerCommand({ videoState: "play", videoSeek: this.player.getCurrentTime() }) }}
             onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
@@ -88,7 +89,10 @@ Player.propTypes = {
 };
 
 function mapStateToProps(state) {
-  return {...state.player};
+  return {
+    player: state.player,
+    profile: state.profile
+  };
 }
 
 function mapDispatchToProps(dispatch) {

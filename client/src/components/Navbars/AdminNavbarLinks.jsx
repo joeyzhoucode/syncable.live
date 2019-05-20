@@ -52,7 +52,7 @@ function HeaderLinks({...props}) {
         simple={!(window.innerWidth > 959)}
         aria-label="Home"
         className={classes.buttonLink}
-        href="/home"
+        onClick={() => { props.historyPush('/home')}}
       >
         <Home className={classes.icons} />
         <Hidden mdUp implementation="css">
@@ -65,7 +65,7 @@ function HeaderLinks({...props}) {
         simple={!(window.innerWidth > 959)}
         aria-label="Player"
         className={classes.buttonLink}
-        href="/player"
+        onClick={() => { props.historyPush('/player')}}
       >
         <VideoLabel className={classes.icons} />
         <Hidden mdUp implementation="css">
@@ -78,7 +78,7 @@ function HeaderLinks({...props}) {
         simple={!(window.innerWidth > 959)}
         aria-label="Person"
         className={classes.buttonLink}
-        href="/profile"
+        onClick={() => { props.historyPush('/profile')}}
       >
         <Person className={classes.icons} />
         <Hidden mdUp implementation="css">

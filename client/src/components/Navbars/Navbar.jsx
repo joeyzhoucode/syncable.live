@@ -16,16 +16,6 @@ import AdminNavbarLinks from "./AdminNavbarLinks.jsx";
 import headerStyle from "assets/jss/syncable-react/components/headerStyle.jsx";
 
 function Header({ ...props }) {
-  function makeBrand() {
-    var name;
-    props.routes.map((prop, key) => {
-      if (prop.path === props.location.pathname) {
-        name = prop.name;
-      }
-      return null;
-    });
-    return name;
-  }
   const { classes, color } = props;
   const appBarClasses = classNames({
     [" " + classes[color]]: color
@@ -33,11 +23,9 @@ function Header({ ...props }) {
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
-        <div className={classes.flex}>
-          {makeBrand()}
-        </div>
+        <div className={classes.flex} />
         <Hidden smDown implementation="css">
-          <AdminNavbarLinks handleSearch={props.handleSearch} />
+          <AdminNavbarLinks handleSearch={props.handleSearch} historyPush={props.historyPush} />
         </Hidden>
         <Hidden mdUp implementation="css">
           <IconButton

@@ -1,17 +1,13 @@
 import { initialState } from './rootReducer';
 import { PLAYER_MOUNT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/playerActions';
 
-import theatreConnection from "../utils/theatreConnection.js";
-
 export default function player(state = initialState.player, action) {
   let newState;
   switch(action.type) {
     case PLAYER_MOUNT:
-      const connection = new theatreConnection(action.viewerId, action.callback);
-      connection.openNewTheatre("Cineplex");
       newState = {
         ...state,
-        connection: connection,
+        connection: action.connection,
         player: action.player,
       }
       return newState;
@@ -27,12 +23,8 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_COMMAND:
-      newState = {
-        ...state,
-        ...action.data
-      }
-      newState.connection.command(newState.videoId, newState.videoSeek, newState.videoState, "Cineplex");
-      return newState;
+      state.connection.command(action.data.videoId, action.data.videoSeek, action.data.videoState, "Cineplex");
+      return state;
     default:
       return state;
   }

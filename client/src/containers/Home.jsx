@@ -40,7 +40,7 @@ import {
 
 import homeStyle from "assets/jss/syncable-react/views/homeStyle.jsx";
 
-class Dashboard extends React.Component {
+class Home extends React.Component {
   state = {
     value: 0
   };
@@ -279,8 +279,8 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
+Home.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(homeStyle)(Dashboard);
+export default withStyles(homeStyle)(Home);

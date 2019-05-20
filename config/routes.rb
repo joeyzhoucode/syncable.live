@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
 
   scope '/api' do
+    get 'viewer', to: 'viewers#show'
     resources :theatres
     resources :viewers
   end

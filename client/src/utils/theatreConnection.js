@@ -4,22 +4,22 @@ const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "access_token";
 const CLIENT = "client";
 
-function theatreConnection(viewerId, callback) {
+function theatreConnection(viewer_id, callback) {
   let access_token = localStorage.getItem(ACCESS_TOKEN)
   let client = localStorage.getItem(CLIENT)
 
   var wsUrl = 'ws://' + BASE_URL + '/cable'
   wsUrl += '?access-token=' + access_token + '&client=' + client
 
-  this.viewerId = viewerId
+  this.viewerId = viewer_id
   this.callback = callback
 
   this.connection = ActionCable.createConsumer(wsUrl)
   this.theatreConnections = {}
 }
 
-theatreConnection.prototype.command = function(video_id, seek_seconds, state, theatreCode) {
-  let theatreConnObj = this.theatreConnections[theatreCode]
+theatreConnection.prototype.command = function(video_id, seek_seconds, state, theatre_code) {
+  let theatreConnObj = this.theatreConnections[theatre_code]
   if (theatreConnObj) {
     theatreConnObj.conn.update(video_id, seek_seconds, state);
   } else {
@@ -27,9 +27,9 @@ theatreConnection.prototype.command = function(video_id, seek_seconds, state, th
   }
 }
 
-theatreConnection.prototype.openNewTheatre = function(theatreCode) {
-  if (theatreCode !== undefined) {
-    this.theatreConnections[theatreCode] = {conn: this.createTheatreConnection(theatreCode)};
+theatreConnection.prototype.openNewTheatre = function(theatre_code) {
+  if (theatre_code !== undefined) {
+    this.theatreConnections[theatre_code] = {conn: this.createTheatreConnection(theatre_code)};
   }
 }
 
@@ -37,14 +37,14 @@ theatreConnection.prototype.disconnect = function() {
   Object.values(this.theatreConnections).forEach(c => c.conn.consumer.connection.close())
 }
 
-theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
+theatreConnection.prototype.createTheatreConnection = function(theatre_code) {
   var scope = this
-  return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatreCode, viewer: scope.viewerId}, {
+  return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatre_code, viewer_id: scope.viewerId}, {
     connected: function() {
-      console.log('connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log('connected to TheatreChannel. Theatre code: ' + theatre_code + '.')
     },
     disconnected: function() {
-      console.log('disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log('disconnected from TheatreChannel. Theatre code: ' + theatre_code + '.')
     },
     received: function(data) {
       if (data.audience.indexOf(scope.viewerId) !== -1) {
@@ -53,11 +53,11 @@ theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
     },
     update: function(video_id, seek_seconds, state) {
       return this.perform('update', {
-        theatre_code: theatreCode,
+        theatre_code: theatre_code,
         video_id: video_id,
         seek_seconds: seek_seconds,
         state: state,
-        viewer: scope.viewerId
+        viewer_id: scope.viewerId
       })
     }
   })
