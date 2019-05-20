@@ -40,6 +40,6 @@ class TheatresController < ApplicationController
   private
 
   def generateCode
-    "#{Faker::Verb.unique.ing_form.humanize}#{Faker::Games::Pokemon.unique.name.humanize}"
+    "#{Faker::Verb.ing_form.humanize}#{Faker::Games::Pokemon.name.humanize}"
   end
 end
