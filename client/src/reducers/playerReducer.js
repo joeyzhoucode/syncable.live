@@ -1,5 +1,5 @@
 import { initialState } from './rootReducer';
-import { PLAYER_MOUNT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/playerActions';
+import { PLAYER_MOUNT, PLAYER_CONNECT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/playerActions';
 
 export default function player(state = initialState.player, action) {
   let newState;
@@ -7,23 +7,32 @@ export default function player(state = initialState.player, action) {
     case PLAYER_MOUNT:
       newState = {
         ...state,
-        connection: action.connection,
         player: action.player,
       }
       return newState;
-    case PLAYER_UPDATE:
+    case PLAYER_CONNECT:
       newState = {
         ...state,
-        videoId: action.data.video_id,
-        videoSeek: action.data.seek_seconds,
-        videoState: action.data.state,
+        connection: action.connection,
       }
-      if(parseInt(newState.videoSeek, 10) !== parseInt(state.videoSeek, 10)) {
+      return newState;
+    case PLAYER_UPDATE:
+      const viewerId = action.data.viewer.id;
+      const videoId = action.data.video_id || state.videoId;
+      const videoSeek = action.data.seek_seconds || 0;
+      const videoState = action.data.state || "pause";
+      newState = {
+        ...state,
+        videoId: videoId,
+        videoSeek: videoSeek,
+        videoState: videoState,
+      }
+      if(viewerId !== newState.connection.viewerId) {
         newState.player.seekTo(newState.videoSeek);
       }
       return newState;
     case PLAYER_COMMAND:
-      state.connection.command(action.data.videoId, action.data.videoSeek, action.data.videoState, "Cineplex");
+      state.connection.command(action.data.videoId, state.player.getCurrentTime(), action.data.videoState, "Cineplex");
       return state;
     default:
       return state;

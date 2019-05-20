@@ -4,14 +4,14 @@ const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "access_token";
 const CLIENT = "client";
 
-function theatreConnection(viewer_id, callback) {
+function theatreConnection(viewerId, callback) {
   let access_token = localStorage.getItem(ACCESS_TOKEN)
   let client = localStorage.getItem(CLIENT)
 
   var wsUrl = 'ws://' + BASE_URL + '/cable'
   wsUrl += '?access-token=' + access_token + '&client=' + client
 
-  this.viewerId = viewer_id
+  this.viewerId = viewerId
   this.callback = callback
 
   this.connection = ActionCable.createConsumer(wsUrl)

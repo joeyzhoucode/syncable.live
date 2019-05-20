@@ -15,47 +15,9 @@ import CardBody from "components/Card/CardBody.jsx";
 import iconsStyle from "assets/jss/syncable-react/views/iconsStyle.jsx";
 
 class Player extends React.Component {
-  getInternalPlayer() {
-    if(this.player && this.player.getInternalPlayer()) {
-      return this.player.getInternalPlayer();
-    }
-    return null;
-  }
-
-  getMediaSource() {
-    if(this.player && this.player.player && this.player.player.player) {
-      const source = this.player.player.player.constructor.name;
-      return source;
-    }
-    return null;
-  }
-
-  getTitle() {
-    if(this.getInternalPlayer()) {
-      switch(this.getMediaSource()) {
-        case "YouTube":
-          return this.getInternalPlayer().getVideoData()["title"];
-        default:
-          return "Title";
-      }
-    }
-    return "Title";
-  }
-  
-  getAuthor() {
-    if(this.getInternalPlayer()) {
-      switch(this.getMediaSource()) {
-        case "YouTube":
-          return this.getInternalPlayer().getVideoData()["author"];
-        default:
-          return "Author";
-      }
-    }
-    return "Author";
-  }
-
   componentDidMount() {
-    this.props.playerMount(this.props.profile.id, this.props.playerUpdate, this.player);
+    this.props.playerConnect(this.props.profile.id, this.props.playerUpdate);
+    this.props.playerMount(this.player);
   }
 
   render() {
@@ -63,8 +25,8 @@ class Player extends React.Component {
     return(
       <Card>
         <CardHeader color="primary">
-          <h4 className={classes.cardTitleWhite}>{this.getTitle()}</h4>
-          <p className={classes.cardCategoryWhite}>{this.getAuthor()}</p>
+          <h4 className={classes.cardTitleWhite}>Title</h4>
+          <p className={classes.cardCategoryWhite}>Author</p>
         </CardHeader>
         <CardBody>
           <ReactPlayer
@@ -74,9 +36,9 @@ class Player extends React.Component {
             volume={1}
             playing={this.props.player.videoState === "play"}
             controls={true}
-            onPlay={() => { this.props.playerCommand({ videoState: "play", videoSeek: this.player.getCurrentTime() }) }}
+            onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}
             onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
-            ref={(player) => this.player = player}
+            ref={(player) => { this.player = player } }
           />
         </CardBody>
       </Card>
@@ -91,7 +53,7 @@ Player.propTypes = {
 function mapStateToProps(state) {
   return {
     player: state.player,
-    profile: state.profile
+    profile: state.profile,
   };
 }
 
