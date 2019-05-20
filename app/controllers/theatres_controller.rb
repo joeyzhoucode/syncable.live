@@ -2,7 +2,10 @@ require 'faker'
 
 class TheatresController < ApplicationController
   def index
-    render json: Theatre.all
+    theatres = Theatre.all.map do |t|
+      {id: t.id, code: t.code, viewers: t.viewers.size }
+    end
+    render json: theatres
   end
 
   def new
@@ -23,7 +26,15 @@ class TheatresController < ApplicationController
   end
 
   def show
-    render json: Theatre.find(params[:id]).viewers
+    render json: Theatre.find(params[:id])
+  end
+
+  def destroy
+    Theatre.find(params[:id]).destroy
+    theatres = Theatre.all.map do |t|
+      {id: t.id, code: t.code, viewers: t.viewers.size }
+    end
+    render json: theatres
   end
 
   private

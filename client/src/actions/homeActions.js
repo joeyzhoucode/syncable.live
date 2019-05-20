@@ -66,6 +66,21 @@ export function theatreCreate(newTheatreCode) {
   }
 }
 
+export function theatreDestroy(id) {
+  return dispatch => {
+    return fetch('/api/theatres/'+ id, {
+      method: 'DELETE',
+      mode: 'cors',
+      credientials: 'include',
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => dispatch(theatreFetchSuccess(data)));
+  }
+}
+
 export function theatreFetchSuccess(data) {
   return { type: THEATRE_FETCH_SUCCESS, data: data };
 }

@@ -30,7 +30,7 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_COMMAND:
-      state.connection.command(action.data.videoId, state.player.getCurrentTime() || 0.0, action.data.videoState, "Cineplex");
+      state.connection.command(action.data.videoId, state.player.getCurrentTime() || 0.0, action.data.videoState, action.data.theatreCode);
       return state;
     default:
       return state;

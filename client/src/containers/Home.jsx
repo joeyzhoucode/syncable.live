@@ -7,34 +7,24 @@ import PropTypes from "prop-types";
 import ChartistGraph from "react-chartist";
 // @material-ui/core
 import withStyles from "@material-ui/core/styles/withStyles";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import AccessTime from "@material-ui/icons/AccessTime";
 import History from "@material-ui/icons/History";
 import Subscriptions from "@material-ui/icons/Subscriptions";
 import PlaylistPlay from "@material-ui/icons/PlaylistPlay";
-import Cloud from "@material-ui/icons/Cloud";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
-import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
-import CustomTabContent from "components/CustomTabs/CustomTabContent.jsx";
+import TheatreTabContent from "components/CustomTabs/TheatreTabContent.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import Danger from "components/Typography/Danger.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 
-import { bugs, website, server } from "variables/general.jsx";
+import { website, server } from "variables/general.jsx";
 
 import {
   dailySalesChart,
@@ -141,13 +131,13 @@ class Home extends React.Component {
                   tabName: "Theatres",
                   tabIcon: Subscriptions,
                   tabContent: (
-                    <CustomTabContent
-                      checkedIndexes={[0, 3]}
-                      tasksIndexes={[0, 1, 2, 3]}
-                      tasks={bugs}
+                    <TheatreTabContent
+                      theatres={this.props.theatres}
                       newTheatreCode={this.props.newTheatreCode}
                       theatreGenerate={this.props.theatreGenerate}
                       theatreCreate={this.props.theatreCreate}
+                      theatreDestory={this.props.theatreDestroy}
+                      historyPush={this.props.historyPush}
                     />
                   )
                 },

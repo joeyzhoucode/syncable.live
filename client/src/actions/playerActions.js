@@ -9,9 +9,9 @@ export function playerMount(player) {
   return { type: PLAYER_MOUNT, player: player };
 }
 
-export function playerConnect(viewerId, callback) {
+export function playerConnect(viewerId, theatreCode, callback) {
   const connection = new theatreConnection(viewerId, callback);
-  connection.openNewTheatre("Cineplex");
+  connection.openNewTheatre(theatreCode);
   return { type: PLAYER_CONNECT, connection: connection };
 }
 

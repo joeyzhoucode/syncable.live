@@ -4,8 +4,6 @@ import home from './homeReducer';
 import player from './playerReducer';
 import profile from './profileReducer';
 
-import image from "assets/img/faces/zhou.png";
-
 export const initialState = {
   home: {
     color: "purple",
@@ -25,7 +23,7 @@ export const initialState = {
     firstName: "John",
     lastName: "Doe",
     email: "John@Doe.com",
-    image: image,
+    image: null,
   }
 };
 

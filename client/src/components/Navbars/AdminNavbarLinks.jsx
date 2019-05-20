@@ -6,9 +6,9 @@ import Hidden from "@material-ui/core/Hidden";
 
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import VideoLabel from "@material-ui/icons/VideoLabel";
 import Home from "@material-ui/icons/Home";
 import CloudUpload from "@material-ui/icons/CloudUpload";
+
 // core components
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
@@ -57,19 +57,6 @@ function HeaderLinks({...props}) {
         <Home className={classes.icons} />
         <Hidden mdUp implementation="css">
           <p className={classes.linkText}>Home</p>
-        </Hidden>
-      </Button>
-      <Button
-        color={"transparent"}
-        justIcon={window.innerWidth > 959}
-        simple={!(window.innerWidth > 959)}
-        aria-label="Player"
-        className={classes.buttonLink}
-        onClick={() => { props.historyPush('/player')}}
-      >
-        <VideoLabel className={classes.icons} />
-        <Hidden mdUp implementation="css">
-          <p className={classes.linkText}>Player</p>
         </Hidden>
       </Button>
       <Button

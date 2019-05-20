@@ -16,7 +16,7 @@ import iconsStyle from "assets/jss/syncable-react/views/iconsStyle.jsx";
 
 class Player extends React.Component {
   componentDidMount() {
-    this.props.playerConnect(this.props.profile.id, this.props.playerUpdate);
+    this.props.playerConnect(this.props.profile.id, this.props.path, this.props.playerUpdate);
     this.props.playerMount(this.player);
   }
 
@@ -36,8 +36,8 @@ class Player extends React.Component {
             volume={1}
             playing={this.props.player.videoState === "play"}
             controls={true}
-            onPlay={() => { this.props.playerCommand({ videoState: "play" }) }}
-            onPause={() => { this.props.playerCommand({ videoState: "pause" }) }}
+            onPlay={() => { this.props.playerCommand({ videoState: "play", theatreCode: this.props.path }) }}
+            onPause={() => { this.props.playerCommand({ videoState: "pause", theatreCode: this.props.path }) }}
             ref={(player) => { this.player = player } }
           />
         </CardBody>
@@ -52,6 +52,7 @@ Player.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    path: state.router.location.pathname.substr(8),
     player: state.player,
     profile: state.profile,
   };
