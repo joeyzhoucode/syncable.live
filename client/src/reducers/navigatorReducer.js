@@ -25,9 +25,11 @@ export default function navigator(state = initialState.navigator, action) {
     default:
       return state;
     case MESSENGER_CONNECT:
+      const connection = state.connection || action.connection;
+      connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
-        globalConnection: action.connection,
+        connection: connection,
       }
       return newState;
     case MESSENGER_UPDATE:
@@ -42,7 +44,7 @@ export default function navigator(state = initialState.navigator, action) {
       }
       return newState;
     case MESSENGER_TALK:
-      state.globalConnection.talk(action.data.message, action.data.theatreCode);
+      state.connection.talk(action.data.message, action.data.theatreCode);
       return state;
   }
 }

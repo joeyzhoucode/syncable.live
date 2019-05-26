@@ -21,10 +21,9 @@ export function historyPush(path) {
   }
 }
 
-export function messengerConnect(viewerId, callback) {
+export function messengerConnect(viewerId, callback, theatreCode) {
   const connection = new theatreConnection(viewerId, callback);
-  connection.openNewTheatre("Global");
-  return { type: MESSENGER_CONNECT, connection: connection };
+  return { type: MESSENGER_CONNECT, connection: connection, theatreCode: theatreCode };
 }
 
 export function messengerUpdate(data) {

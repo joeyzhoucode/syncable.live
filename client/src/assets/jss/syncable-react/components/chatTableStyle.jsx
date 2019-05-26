@@ -47,14 +47,13 @@ const chatTableStyle = theme => ({
   tableCell: {
     ...defaultFont,
     lineHeight: "1.42857143",
-    padding: "0px 12px",
+    padding: "0px 6px",
     verticalAlign: "middle",
     borderBottom: "0",
   },
   tableResponsive: {
     width: "100%",
     height: "100%",
-    marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
   }
 });

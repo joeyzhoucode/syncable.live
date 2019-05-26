@@ -30,7 +30,7 @@ class Player extends React.Component {
               className: classes.margin + " " + classes.search
             }}
             inputProps={{
-              placeholder: "Search",
+              placeholder: "Search for a video...",
               inputProps: {
                 "aria-label": "Search"
               }

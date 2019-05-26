@@ -63,7 +63,7 @@ function MessageInput({ ...props }) {
             if(target.charCode === 13) {
               target.preventDefault();
               const message = document.getElementById(id).value;
-              props.sendContent({ message: message, theatreCode: "Global"});
+              props.sendContent({ message: message, theatreCode: props.theatreCode});
               document.getElementById(id).value = "";
             }
           }}
@@ -77,9 +77,9 @@ function MessageInput({ ...props }) {
       </FormControl>
       <IconButton onClick={() => {
         const message = document.getElementById(id).value;
-        props.sendContent({ message: message, theatreCode: "Global"});
+        props.sendContent({ message: message, theatreCode: props.theatreCode});
       }}>
-        <Send />
+        <Send className={classes.iconButton} />
       </IconButton>
     </div>
   );

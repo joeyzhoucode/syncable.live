@@ -55,8 +55,11 @@ class Navigator extends React.Component {
         this.props.navigatorActions.navigatorDrawerClose();
       }
     }
-    if (!this.props.navigator.globalConnection && this.props.profile.id) {
-      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate);
+    if (this.props.profile.id && !this.props.navigator.connection) {
+      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate, "Global");
+    }
+    if (this.props.profile.id && this.props.path && e.path != this.props.path) {
+      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate, this.props.path);
     }
   }
   componentWillUnmount() {
@@ -75,14 +78,14 @@ class Navigator extends React.Component {
           color={this.props.navigator.color}
           messages={this.props.navigator.messages}
           sendContent={this.props.navigatorActions.messengerTalk}
-          theatreCode={this.props.path}
+          theatreCode={this.props.path || "Global"}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">
           <Navbar
             historyPush={this.props.navigatorActions.historyPush}
             handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
-            theatreCode={this.props.path}
+            theatreCode={this.props.path || "Global"}
             {...rest}
           />
           <div className={classes.content}>

@@ -27,7 +27,7 @@ export const initialState = {
     color: "purple",
     fixedClasses: "dropdown show",
     mobileOpen: false,
-    globalConnection: null,
+    connection: null,
     messages: [],
   }
 };

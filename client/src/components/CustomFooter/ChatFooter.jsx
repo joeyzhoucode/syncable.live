@@ -24,6 +24,7 @@ function ChatFooter({ ...props }) {
               }
             }}
             sendContent={props.sendContent}
+            theatreCode={props.theatreCode}
             id={customInputId}
           />
       </div>

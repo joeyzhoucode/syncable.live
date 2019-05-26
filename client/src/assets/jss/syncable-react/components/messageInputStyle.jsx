@@ -14,7 +14,7 @@ const messageInputStyle = {
   },
   underline: {
     "&:hover:not($disabled):before,&:before": {
-      borderColor: grayColor[4] + " !important",
+      borderColor: primaryColor[1] + " !important",
       borderWidth: "1px !important"
     },
     "&:after": {
@@ -37,6 +37,9 @@ const messageInputStyle = {
     fontWeight: "400",
     fontSize: "14px",
     lineHeight: "1.42857"
+  },
+  iconButton: {
+    color: primaryColor[0],
   },
   labelRootError: {
     color: dangerColor[0]
