@@ -44,7 +44,7 @@ const Sidebar = ({ ...props }) => {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-            <AdminNavbarLinks handleSearch={props.handleSearch} historyPush={props.historyPush} theatreCode={props.theatreCode} />
+            <AdminNavbarLinks historyPush={props.historyPush} />
             <ChatTable tableData={props.messages} />
             <ChatFooter sendContent={props.sendContent} />
           </div>

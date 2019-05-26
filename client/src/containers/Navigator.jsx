@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as navigatorActions from "../actions/navigatorActions";
 import * as homeActions from "../actions/homeActions";
-import * as playerActions from "../actions/playerActions";
 import * as profileActions from "../actions/profileActions";
 import PropTypes from "prop-types";
 import { Switch, Route } from "react-router-dom";
@@ -72,7 +71,6 @@ class Navigator extends React.Component {
           logoText={this.props.profile.firstName + " " + this.props.profile.lastName}
           logo={this.props.profile.image}
           handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
-          handleSearch={this.props.playerActions.playerCommand}
           open={this.props.navigator.mobileOpen}
           color={this.props.navigator.color}
           messages={this.props.navigator.messages}
@@ -84,7 +82,6 @@ class Navigator extends React.Component {
           <Navbar
             historyPush={this.props.navigatorActions.historyPush}
             handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
-            handleSearch={this.props.playerActions.playerCommand}
             theatreCode={this.props.path}
             {...rest}
           />
@@ -114,7 +111,6 @@ function mapDispatchToProps(dispatch) {
   return {
     navigatorActions: bindActionCreators(navigatorActions, dispatch),
     homeActions: bindActionCreators(homeActions, dispatch),
-    playerActions: bindActionCreators(playerActions, dispatch),
     profileActions: bindActionCreators(profileActions, dispatch),
   }
 }

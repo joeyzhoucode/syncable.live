@@ -25,7 +25,7 @@ function Header({ ...props }) {
       <Toolbar className={classes.container}>
         <div className={classes.flex} />
         <Hidden smDown implementation="css">
-          <AdminNavbarLinks handleSearch={props.handleSearch} historyPush={props.historyPush} theatreCode={props.theatreCode} />
+          <AdminNavbarLinks historyPush={props.historyPush} />
         </Hidden>
         <Hidden mdUp implementation="css">
           <IconButton
