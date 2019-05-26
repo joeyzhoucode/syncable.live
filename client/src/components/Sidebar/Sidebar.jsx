@@ -8,6 +8,8 @@ import Hidden from "@material-ui/core/Hidden";
 import Button from "components/CustomButtons/Button.jsx";
 // core components
 import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
+import ChatTable from "components/CustomTable/ChatTable.jsx";
+import ChatFooter from "components/CustomFooter/ChatFooter.jsx";
 
 import sidebarStyle from "assets/jss/syncable-react/components/sidebarStyle.jsx";
 
@@ -54,6 +56,51 @@ const Sidebar = ({ ...props }) => {
           classes={{ paper: classNames(classes.drawerPaper) }}
         >
           {brand}
+          <ChatTable
+            tableData={[
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+              { viewer: "asdf", message: "hello" },
+            ]}
+          />
+          <ChatFooter />
         </Drawer>
       </Hidden>
     </div>
