@@ -6,14 +6,13 @@ import PropTypes from "prop-types";
 import ReactPlayer from 'react-player';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
 // core components
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import SearchInput from "components/CustomInput/SearchInput.jsx";
 
 import iconsStyle from "assets/jss/syncable-react/views/iconsStyle.jsx";
-
 class Player extends React.Component {
   componentDidMount() {
     this.props.playerConnect(this.props.profile.id, this.props.path, this.props.playerUpdate);
@@ -22,11 +21,24 @@ class Player extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const customInputId = "videoId";
     return(
       <Card>
         <CardHeader color="primary">
-          <h4 className={classes.cardTitleWhite}>Title</h4>
-          <p className={classes.cardCategoryWhite}>Author</p>
+          <SearchInput
+            formControlProps={{
+              className: classes.margin + " " + classes.search
+            }}
+            inputProps={{
+              placeholder: "Search",
+              inputProps: {
+                "aria-label": "Search"
+              }
+            }}
+            id={customInputId}
+            playerCommand={this.props.playerCommand}
+            theatreCode={this.props.path}
+          />
         </CardHeader>
         <CardBody>
           <ReactPlayer
