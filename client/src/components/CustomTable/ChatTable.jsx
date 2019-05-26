@@ -7,7 +7,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 // core components
-import tableStyle from "assets/jss/syncable-react/components/tableStyle.jsx";
+import chatTableStyle from "assets/jss/syncable-react/components/chatTableStyle.jsx";
 
 function ChatTable({ ...props }) {
   const { classes, tableData } = props;
@@ -19,7 +19,7 @@ function ChatTable({ ...props }) {
             return (
               <TableRow key={key}>
                 <TableCell className={classes.tableCell}>
-                  {prop.viewer + ": " + prop.message}
+                  {prop.viewerName + ": " + prop.content}
                 </TableCell>
               </TableRow>
             );
@@ -35,4 +35,4 @@ ChatTable.propTypes = {
   tableData: PropTypes.arrayOf(PropTypes.object)
 };
 
-export default withStyles(tableStyle)(ChatTable);
+export default withStyles(chatTableStyle)(ChatTable);

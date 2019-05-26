@@ -5,4 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Theatre.create!(code: 'Cineplex', viewers: [])
+Theatre.create!(code: 'Global', viewers: [])

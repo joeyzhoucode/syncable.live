@@ -45,6 +45,8 @@ const Sidebar = ({ ...props }) => {
           {brand}
           <div className={classes.sidebarWrapper}>
             <AdminNavbarLinks handleSearch={props.handleSearch} historyPush={props.historyPush} />
+            <ChatTable tableData={props.messages} />
+            <ChatFooter sendContent={props.sendContent} />
           </div>
         </Drawer>
       </Hidden>
@@ -56,51 +58,8 @@ const Sidebar = ({ ...props }) => {
           classes={{ paper: classNames(classes.drawerPaper) }}
         >
           {brand}
-          <ChatTable
-            tableData={[
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-              { viewer: "asdf", message: "hello" },
-            ]}
-          />
-          <ChatFooter />
+          <ChatTable tableData={props.messages} />
+          <ChatFooter sendContent={props.sendContent} />
         </Drawer>
       </Hidden>
     </div>

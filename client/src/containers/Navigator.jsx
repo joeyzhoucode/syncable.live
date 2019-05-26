@@ -2,6 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as navigatorActions from "../actions/navigatorActions";
 import * as homeActions from "../actions/homeActions";
 import * as playerActions from "../actions/playerActions";
 import * as profileActions from "../actions/profileActions";
@@ -37,7 +38,7 @@ const switchRoutes = (
 class Navigator extends React.Component {
   resizeFunction = () => {
     if (window.innerWidth >= 960) {
-      this.props.homeActions.homeDrawerClose();
+      this.props.navigatorActions.navigatorDrawerClose();
     }
   };
   componentDidMount() {
@@ -51,9 +52,12 @@ class Navigator extends React.Component {
   componentDidUpdate(e) {
     if (e.history.location.pathname !== e.location.pathname) {
       this.refs.mainPanel.scrollTop = 0;
-      if (this.props.home.mobileOpen) {
-        this.props.homeActions.homeDrawerClose();
+      if (this.props.navigator.mobileOpen) {
+        this.props.navigatorActions.navigatorDrawerClose();
       }
+    }
+    if (!this.props.navigator.globalConnection && this.props.profile.id) {
+      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate);
     }
   }
   componentWillUnmount() {
@@ -64,19 +68,21 @@ class Navigator extends React.Component {
     return (
       <div className={classes.wrapper}>
         {<Sidebar
-          historyPush={this.props.homeActions.historyPush}
+          historyPush={this.props.navigatorActions.historyPush}
           logoText={this.props.profile.firstName + " " + this.props.profile.lastName}
           logo={this.props.profile.image}
-          handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
+          handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
           handleSearch={this.props.playerActions.playerCommand}
-          open={this.props.home.mobileOpen}
-          color={this.props.home.color}
+          open={this.props.navigator.mobileOpen}
+          color={this.props.navigator.color}
+          messages={this.props.navigator.messages}
+          sendContent={this.props.navigatorActions.messengerTalk}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">
           <Navbar
-            historyPush={this.props.homeActions.historyPush}
-            handleDrawerToggle={this.props.homeActions.homeDrawerToggle}
+            historyPush={this.props.navigatorActions.historyPush}
+            handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
             handleSearch={this.props.playerActions.playerCommand}
             {...rest}
           />
@@ -96,13 +102,14 @@ Navigator.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    home: state.home,
+    navigator: state.navigator,
     profile: state.profile,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    navigatorActions: bindActionCreators(navigatorActions, dispatch),
     homeActions: bindActionCreators(homeActions, dispatch),
     playerActions: bindActionCreators(playerActions, dispatch),
     profileActions: bindActionCreators(profileActions, dispatch),

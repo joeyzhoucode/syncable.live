@@ -3,12 +3,10 @@ import { connectRouter } from 'connected-react-router';
 import home from './homeReducer';
 import player from './playerReducer';
 import profile from './profileReducer';
+import navigator from './navigatorReducer';
 
 export const initialState = {
   home: {
-    color: "purple",
-    fixedClasses: "dropdown show",
-    mobileOpen: false,
     theatres: [],
     newTheatreCode: null,
   },
@@ -19,11 +17,18 @@ export const initialState = {
     player: null,
   },
   profile: {
-    id: 0,
+    id: null,
     firstName: "John",
     lastName: "Doe",
     email: "John@Doe.com",
     image: null,
+  },
+  navigator: {
+    color: "purple",
+    fixedClasses: "dropdown show",
+    mobileOpen: false,
+    globalConnection: null,
+    messages: [],
   }
 };
 
@@ -32,4 +37,5 @@ export default(history) => combineReducers({
   home,
   player,
   profile,
+  navigator,
 })

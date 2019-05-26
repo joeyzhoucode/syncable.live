@@ -6,12 +6,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import footerStyle from "assets/jss/syncable-react/components/footerStyle.jsx";
 import MessageInput from "components/CustomInput/MessageInput.jsx";
-import IconButton from "@material-ui/core/IconButton";
-import Send from "@material-ui/icons/Send";
 
 function ChatFooter({ ...props }) {
   const { classes } = props;
-  const customInputId = "videoId";
+  const customInputId = "messageInput";
   return (
     <footer className={classes.footer}>
       <div className={classes.container}>
@@ -25,11 +23,9 @@ function ChatFooter({ ...props }) {
                 "aria-label": "Search"
               }
             }}
+            sendContent={props.sendContent}
             id={customInputId}
           />
-          <IconButton>
-            <Send />
-          </IconButton>
       </div>
     </footer>
   );

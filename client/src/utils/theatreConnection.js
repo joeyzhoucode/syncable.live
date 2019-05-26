@@ -27,6 +27,15 @@ theatreConnection.prototype.command = function(video_id, seek_seconds, state, th
   }
 }
 
+theatreConnection.prototype.talk = function(message, theatre_code) {
+  let theatreConnObj = this.theatreConnections[theatre_code]
+  if (theatreConnObj) {
+    theatreConnObj.conn.speak(message);
+  } else {
+    console.log('Error: Cannot find theatre connection')
+  }
+}
+
 theatreConnection.prototype.openNewTheatre = function(theatre_code) {
   if (theatre_code !== undefined) {
     this.theatreConnections[theatre_code] = {conn: this.createTheatreConnection(theatre_code)};
@@ -58,6 +67,13 @@ theatreConnection.prototype.createTheatreConnection = function(theatre_code) {
         seek_seconds: seek_seconds,
         state: state,
         viewer_id: scope.viewerId
+      })
+    },
+    speak: function(message) {
+      return this.perform('speak', {
+        theatre_code: theatre_code,
+        viewer_id: scope.viewerId,
+        message: message
       })
     }
   })

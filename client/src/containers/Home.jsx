@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as navigatorActions from "../actions/navigatorActions";
 import * as homeActions from "../actions/homeActions";
 import PropTypes from "prop-types";
 // react plugin for creating charts
@@ -36,7 +37,7 @@ import homeStyle from "assets/jss/syncable-react/views/homeStyle.jsx";
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.theatreGenerate();
+    this.props.homeActions.theatreGenerate();
   }
 
   render() {
@@ -134,10 +135,10 @@ class Home extends React.Component {
                     <TheatreTabContent
                       theatres={this.props.theatres}
                       newTheatreCode={this.props.newTheatreCode}
-                      theatreGenerate={this.props.theatreGenerate}
-                      theatreCreate={this.props.theatreCreate}
-                      theatreDestroy={this.props.theatreDestroy}
-                      historyPush={this.props.historyPush}
+                      theatreGenerate={this.props.homeActions.theatreGenerate}
+                      theatreCreate={this.props.homeActions.theatreCreate}
+                      theatreDestroy={this.props.homeActions.theatreDestroy}
+                      historyPush={this.props.navigatorActions.historyPush}
                     />
                   )
                 },
@@ -181,6 +182,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return { ...bindActionCreators(homeActions, dispatch) }
+  return {
+    homeActions: bindActionCreators(homeActions, dispatch),
+    navigatorActions: bindActionCreators(navigatorActions, dispatch),
+  }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(homeStyle)(Home));
