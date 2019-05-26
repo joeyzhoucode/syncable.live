@@ -77,6 +77,7 @@ class Navigator extends React.Component {
           color={this.props.navigator.color}
           messages={this.props.navigator.messages}
           sendContent={this.props.navigatorActions.messengerTalk}
+          theatreCode={this.props.path}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">
@@ -84,6 +85,7 @@ class Navigator extends React.Component {
             historyPush={this.props.navigatorActions.historyPush}
             handleDrawerToggle={this.props.navigatorActions.navigatorDrawerToggle}
             handleSearch={this.props.playerActions.playerCommand}
+            theatreCode={this.props.path}
             {...rest}
           />
           <div className={classes.content}>
@@ -102,6 +104,7 @@ Navigator.propTypes = {
 
 function mapStateToProps(state) {
   return {
+    path: state.router.location.pathname.substr(8),
     navigator: state.navigator,
     profile: state.profile,
   };

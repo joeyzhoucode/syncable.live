@@ -36,7 +36,7 @@ function HeaderLinks({...props}) {
         <Button 
           onClick={() => {
             const videoId = document.getElementById(customInputId).value;
-            props.handleSearch({ videoId: videoId, videoState: "play" });
+            props.handleSearch({ videoId: videoId, videoState: "play", theatreCode: props.theatreCode });
           }}
           color="white"
           aria-label="edit"
