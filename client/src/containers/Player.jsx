@@ -15,7 +15,7 @@ import SearchInput from "components/CustomInput/SearchInput.jsx";
 import iconsStyle from "assets/jss/syncable-react/views/iconsStyle.jsx";
 class Player extends React.Component {
   componentDidMount() {
-    this.props.playerConnect(this.props.profile.id, this.props.path, this.props.playerUpdate);
+    this.props.playerSubscribe(this.props.profile.id, this.props.path, this.props.playerRecieve);
     this.props.playerMount(this.player);
   }
 
@@ -36,7 +36,7 @@ class Player extends React.Component {
               }
             }}
             id={customInputId}
-            playerCommand={this.props.playerCommand}
+            playerBroadcast={this.props.playerBroadcast}
             theatreCode={this.props.path}
           />
         </CardHeader>
@@ -48,8 +48,8 @@ class Player extends React.Component {
             volume={1}
             playing={this.props.player.videoState === "play"}
             controls={true}
-            onPlay={() => { this.props.playerCommand({ videoState: "play", theatreCode: this.props.path }) }}
-            onPause={() => { this.props.playerCommand({ videoState: "pause", theatreCode: this.props.path }) }}
+            onPlay={() => { this.props.playerBroadcast({ videoState: "play", theatreCode: this.props.path }) }}
+            onPause={() => { this.props.playerBroadcast({ videoState: "pause", theatreCode: this.props.path }) }}
             ref={(player) => { this.player = player } }
           />
         </CardBody>

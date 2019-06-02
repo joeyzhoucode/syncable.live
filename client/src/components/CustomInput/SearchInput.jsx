@@ -59,7 +59,7 @@ function SearchInput({ ...props }) {
             if(target.charCode === 13) {
               target.preventDefault();
               const videoId = document.getElementById(id).value;
-              props.playerCommand({ videoId: videoId, videoState: "play", theatreCode: props.theatreCode });
+              props.playerBroadcast({ videoId: videoId, videoState: "play", theatreCode: props.theatreCode });
               document.getElementById(id).value = "";
             }
           }}
@@ -73,7 +73,7 @@ function SearchInput({ ...props }) {
       </FormControl>
       <IconButton onClick={() => {
         const videoId = document.getElementById(id).value;
-        props.playerCommand({ videoId: videoId, videoState: "play", theatreCode: props.theatreCode });
+        props.playerBroadcast({ videoId: videoId, videoState: "play", theatreCode: props.theatreCode });
         document.getElementById(id).value = "";
       }}>
         <Search className={classes.labelRoot + labelClasses} />

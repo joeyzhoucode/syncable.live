@@ -1,5 +1,5 @@
 import { initialState } from './rootReducer';
-import { PLAYER_MOUNT, PLAYER_CONNECT, PLAYER_UPDATE, PLAYER_COMMAND } from '../actions/playerActions';
+import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
 
 export default function player(state = initialState.player, action) {
   let newState;
@@ -10,13 +10,13 @@ export default function player(state = initialState.player, action) {
         player: action.player,
       }
       return newState;
-    case PLAYER_CONNECT:
+    case PLAYER_SUBSCRIBE:
       newState = {
         ...state,
         connection: action.connection,
       }
       return newState;
-    case PLAYER_UPDATE:
+    case PLAYER_RECIEVE:
       const videoId = action.data.video_id || state.videoId;
       const videoSeek = action.data.seek_seconds || 0;
       const videoState = action.data.state || "pause";
@@ -29,7 +29,7 @@ export default function player(state = initialState.player, action) {
         newState.player.seekTo(videoSeek);
       }
       return newState;
-    case PLAYER_COMMAND:
+    case PLAYER_BROADCAST:
       state.connection.command(action.data.videoId, state.player.getCurrentTime() || 0.0, action.data.videoState, action.data.theatreCode);
       return state;
     default:
