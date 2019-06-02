@@ -58,13 +58,24 @@ theatreConnection.prototype.disconnect = function() {
 }
 
 theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
-  var scope = this
+  let scope = this;
+  let connectionType;
+  switch(scope.connectionType) {
+    case COMMAND_TYPE:
+      connectionType = "Player";
+      break;
+    case MESSAGE_TYPE:
+      connectionType = "Messenger";
+      break;
+    default:
+      connectionType = undefined;
+  }
   return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatreCode, viewer_id: scope.viewerId}, {
     connected: function() {
-      console.log(this.connectionType + ' connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log(connectionType + ' connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     disconnected: function() {
-      console.log(this.connectionType +  ' disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log(connectionType +  ' disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     received: function(data) {
       if (data.audience.indexOf(scope.viewerId) !== -1) {
