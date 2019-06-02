@@ -2,9 +2,9 @@ import { initialState } from './rootReducer';
 import { 
   NAVIGATOR_DRAWER_TOGGLE,
   NAVIGATOR_DRAWER_CLOSE,
-  MESSENGER_CONNECT,
-  MESSENGER_UPDATE,
-  MESSENGER_TALK,
+  MESSENGER_SUBSCRIBE,
+  MESSENGER_RECIEVE,
+  MESSENGER_BROADCAST,
   } from '../actions/navigatorActions';
 
 export default function navigator(state = initialState.navigator, action) {
@@ -24,7 +24,7 @@ export default function navigator(state = initialState.navigator, action) {
       return newState;
     default:
       return state;
-    case MESSENGER_CONNECT:
+    case MESSENGER_SUBSCRIBE:
       const connection = state.connection || action.connection;
       connection.openNewTheatre(action.theatreCode);
       newState = {
@@ -32,7 +32,7 @@ export default function navigator(state = initialState.navigator, action) {
         connection: connection,
       }
       return newState;
-    case MESSENGER_UPDATE:
+    case MESSENGER_RECIEVE:
       let newMessages = state.messages;
       newMessages.push({
         viewerName: action.data.viewer.first_name + " " + action.data.viewer.last_name,
@@ -43,8 +43,8 @@ export default function navigator(state = initialState.navigator, action) {
         messages: newMessages,
       }
       return newState;
-    case MESSENGER_TALK:
-      state.connection.talk(action.data.message, action.data.theatreCode);
+    case MESSENGER_BROADCAST:
+      state.connection.message(action.data.message, action.data.theatreCode);
       return state;
   }
 }

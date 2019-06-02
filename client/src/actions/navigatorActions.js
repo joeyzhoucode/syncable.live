@@ -3,9 +3,9 @@ import { push } from 'connected-react-router';
 
 export const NAVIGATOR_DRAWER_TOGGLE = 'NAVIGATOR_DRAWER_TOGGLE';
 export const NAVIGATOR_DRAWER_CLOSE = 'NAVIGATOR_DRAWER_CLOSE';
-export const MESSENGER_CONNECT = 'MESSENGER_CONNECT';
-export const MESSENGER_UPDATE = 'MESSENGER_UPDATE';
-export const MESSENGER_TALK = 'MESSENGER_TALK';
+export const MESSENGER_SUBSCRIBE = 'MESSENGER_SUBSCRIBE';
+export const MESSENGER_RECIEVE = 'MESSENGER_RECIEVE';
+export const MESSENGER_BROADCAST = 'MESSENGER_BROADCAST';
 
 export function navigatorDrawerToggle() {
   return { type: NAVIGATOR_DRAWER_TOGGLE };
@@ -21,15 +21,15 @@ export function historyPush(path) {
   }
 }
 
-export function messengerConnect(viewerId, callback, theatreCode) {
+export function messengerSubscribe(viewerId, callback, theatreCode) {
   const connection = new theatreConnection(viewerId, callback);
-  return { type: MESSENGER_CONNECT, connection: connection, theatreCode: theatreCode };
+  return { type: MESSENGER_SUBSCRIBE, connection: connection, theatreCode: theatreCode };
 }
 
-export function messengerUpdate(data) {
-  return { type: MESSENGER_UPDATE, data: data };
+export function messengerRecieve(data) {
+  return { type: MESSENGER_RECIEVE, data: data };
 }
 
-export function messengerTalk(data) {
-  return { type: MESSENGER_TALK, data: data };
+export function messengerBroadcast(data) {
+  return { type: MESSENGER_BROADCAST, data: data };
 }

@@ -1,15 +1,15 @@
 import ActionCable from 'actioncable'
 
 const BASE_URL = "syncable.live"; // "syncable.live";
-const ACCESS_TOKEN = "access_token";
+const ACCESS_TOKEN = "accessToken";
 const CLIENT = "client";
 
 function theatreConnection(viewerId, callback) {
-  let access_token = localStorage.getItem(ACCESS_TOKEN)
+  let accessToken = localStorage.getItem(ACCESS_TOKEN)
   let client = localStorage.getItem(CLIENT)
 
   var wsUrl = 'ws://' + BASE_URL + '/cable'
-  wsUrl += '?access-token=' + access_token + '&client=' + client
+  wsUrl += '?access-token=' + accessToken + '&client=' + client
 
   this.viewerId = viewerId
   this.callback = callback
@@ -18,27 +18,27 @@ function theatreConnection(viewerId, callback) {
   this.theatreConnections = {}
 }
 
-theatreConnection.prototype.command = function(video_id, seek_seconds, state, theatre_code) {
-  let theatreConnObj = this.theatreConnections[theatre_code]
+theatreConnection.prototype.command = function(videoId, seekSeconds, state, theatreCode) {
+  let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.update(video_id, seek_seconds, state);
+    theatreConnObj.conn.broadcastCommand(videoId, seekSeconds, state);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
 }
 
-theatreConnection.prototype.talk = function(message, theatre_code) {
-  let theatreConnObj = this.theatreConnections[theatre_code]
+theatreConnection.prototype.message = function(message, theatreCode) {
+  let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.speak(message);
+    theatreConnObj.conn.broadcastMessage(message);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
 }
 
-theatreConnection.prototype.openNewTheatre = function(theatre_code) {
-  if (theatre_code !== undefined) {
-    this.theatreConnections[theatre_code] = {conn: this.createTheatreConnection(theatre_code)};
+theatreConnection.prototype.openNewTheatre = function(theatreCode) {
+  if (theatreCode !== undefined) {
+    this.theatreConnections[theatreCode] = {conn: this.createTheatreConnection(theatreCode)};
   }
 }
 
@@ -46,32 +46,32 @@ theatreConnection.prototype.disconnect = function() {
   Object.values(this.theatreConnections).forEach(c => c.conn.consumer.connection.close())
 }
 
-theatreConnection.prototype.createTheatreConnection = function(theatre_code) {
+theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
   var scope = this
-  return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatre_code, viewer_id: scope.viewerId}, {
+  return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatreCode, viewer_id: scope.viewerId}, {
     connected: function() {
-      console.log('connected to TheatreChannel. Theatre code: ' + theatre_code + '.')
+      console.log('connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     disconnected: function() {
-      console.log('disconnected from TheatreChannel. Theatre code: ' + theatre_code + '.')
+      console.log('disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     received: function(data) {
       if (data.audience.indexOf(scope.viewerId) !== -1) {
         return scope.callback(data)
       }
     },
-    update: function(video_id, seek_seconds, state) {
-      return this.perform('update', {
-        theatre_code: theatre_code,
-        video_id: video_id,
-        seek_seconds: seek_seconds,
+    broadcastCommand: function(videoId, seekSeconds, state) {
+      return this.perform('broadcast_command', {
+        theatre_code: theatreCode,
+        video_id: videoId,
+        seek_seconds: seekSeconds,
         state: state,
         viewer_id: scope.viewerId
       })
     },
-    speak: function(message) {
-      return this.perform('speak', {
-        theatre_code: theatre_code,
+    broadcastMessage: function(message) {
+      return this.perform('broadcast_message', {
+        theatre_code: theatreCode,
         viewer_id: scope.viewerId,
         message: message
       })

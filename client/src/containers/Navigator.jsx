@@ -56,10 +56,10 @@ class Navigator extends React.Component {
       }
     }
     if (this.props.profile.id && !this.props.navigator.connection) {
-      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate, "Global");
+      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, "Global");
     }
     if (this.props.profile.id && this.props.path && e.path != this.props.path) {
-      this.props.navigatorActions.messengerConnect(this.props.profile.id, this.props.navigatorActions.messengerUpdate, this.props.path);
+      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path);
     }
   }
   componentWillUnmount() {
@@ -77,7 +77,7 @@ class Navigator extends React.Component {
           open={this.props.navigator.mobileOpen}
           color={this.props.navigator.color}
           messages={this.props.navigator.messages}
-          sendContent={this.props.navigatorActions.messengerTalk}
+          sendContent={this.props.navigatorActions.messengerBroadcast}
           theatreCode={this.props.path || "Global"}
           {...rest}
         />}
