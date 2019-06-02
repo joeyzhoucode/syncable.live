@@ -29,9 +29,6 @@ export default function navigator(state = initialState.navigator, action) {
       return state;
     case MESSENGER_SUBSCRIBE:
       const connection = state.connection || new theatreConnection(action.viewerId, action.callback);
-      if(connection.theatreConnections[action.theatreCode]) {
-        return state;
-      }
       connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
