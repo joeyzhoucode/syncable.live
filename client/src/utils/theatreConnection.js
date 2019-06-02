@@ -40,7 +40,7 @@ theatreConnection.prototype.message = function(content, theatreCode) {
 }
 
 theatreConnection.prototype.openNewTheatre = function(theatreCode) {
-  if (theatreCode !== undefined) {
+  if (theatreCode !== undefined && !(theatreCode in this.theatreConnections)) {
     this.theatreConnections[theatreCode] = this.createTheatreConnection(theatreCode);
   }
 }

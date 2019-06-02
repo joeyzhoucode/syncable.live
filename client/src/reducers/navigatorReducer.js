@@ -32,7 +32,6 @@ export default function navigator(state = initialState.navigator, action) {
       if(connection.theatreConnections[action.theatreCode]) {
         return state;
       }
-
       connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
@@ -42,13 +41,8 @@ export default function navigator(state = initialState.navigator, action) {
     case MESSENGER_UNSUBSCRIBE:
       if(state.connection) {
         state.connection.disconnect();
-        delete state.connection;
       }
-      newState = {
-        ...state,
-        connection: null,
-      }
-      return newState
+      return state;
     case MESSENGER_RECIEVE:
       if(action.data.payload_type !== MESSAGE_PAYLOAD) {
         return state;

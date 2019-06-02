@@ -51,15 +51,11 @@ class Navigator extends React.Component {
       if (this.props.navigator.mobileOpen) {
         this.props.navigatorActions.navigatorDrawerClose();
       }
+      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path || "Global");
     }
     
-    if (this.props.profile.id) {
-      if (!this.props.navigator.connection) {
-        this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, "Global");
-      }
-      if (this.props.path && e.path != this.props.path) {
-        this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path);
-      }
+    if (this.props.profile.id && !this.props.navigator.connection) {
+      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path || "Global");
     }
   }
   componentWillUnmount() {
