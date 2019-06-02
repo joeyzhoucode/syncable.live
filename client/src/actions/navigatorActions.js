@@ -21,8 +21,8 @@ export function historyPush(path) {
   }
 }
 
-export function messengerSubscribe(viewerId, callback, theatreCode) {
-  return { type: MESSENGER_SUBSCRIBE, viewerId: viewerId, callback: callback, theatreCode: theatreCode };
+export function messengerSubscribe(viewerId, theatreCode, callback) {
+  return { type: MESSENGER_SUBSCRIBE, viewerId: viewerId, theatreCode: theatreCode, callback: callback };
 }
 
 export function messengerUnsubscribe() {

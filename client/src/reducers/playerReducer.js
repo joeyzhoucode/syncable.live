@@ -1,5 +1,6 @@
 import { initialState } from './rootReducer';
 import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
+import theatreConnection from "../utils/theatreConnection.js";
 import { COMMAND_PAYLOAD } from '../utils/theatreConnection';
 
 export default function player(state = initialState.player, action) {
@@ -12,9 +13,11 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_SUBSCRIBE:
+      const connection = state.connection || new theatreConnection(action.viewerId, action.callback);
+      connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
-        connection: action.connection,
+        connection: connection,
       }
       return newState;
     case PLAYER_RECIEVE:

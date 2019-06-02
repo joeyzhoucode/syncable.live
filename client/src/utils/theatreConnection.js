@@ -8,34 +8,34 @@ export const COMMAND_PAYLOAD = "COMMAND";
 export const MESSAGE_PAYLOAD = "MESSAGE";
 
 function theatreConnection(viewerId, callback) {
-  let accessToken = localStorage.getItem(ACCESS_TOKEN)
-  let client = localStorage.getItem(CLIENT)
+  let accessToken = localStorage.getItem(ACCESS_TOKEN);
+  let client = localStorage.getItem(CLIENT);
 
-  var wsUrl = 'ws://' + BASE_URL + '/cable'
-  wsUrl += '?access-token=' + accessToken + '&client=' + client
+  var wsUrl = 'ws://' + BASE_URL + '/cable';
+  wsUrl += '?access-token=' + accessToken + '&client=' + client;
 
-  this.viewerId = viewerId
-  this.callback = callback
+  this.viewerId = viewerId;
+  this.callback = callback;
 
-  this.connection = ActionCable.createConsumer(wsUrl)
-  this.theatreConnections = {}
+  this.connection = ActionCable.createConsumer(wsUrl);
+  this.theatreConnections = {};
 }
 
 theatreConnection.prototype.command = function(videoId, seekSeconds, state, theatreCode) {
-  let theatreConnObj = this.theatreConnections[theatreCode]
+  let theatreConnObj = this.theatreConnections[theatreCode];
   if (theatreConnObj) {
     theatreConnObj.broadcastCommand(videoId, seekSeconds, state);
   } else {
-    console.log('Error: Cannot find theatre connection')
+    console.log('Error: Cannot find theatre connection');
   }
 }
 
 theatreConnection.prototype.message = function(content, theatreCode) {
-  let theatreConnObj = this.theatreConnections[theatreCode]
+  let theatreConnObj = this.theatreConnections[theatreCode];
   if (theatreConnObj) {
     theatreConnObj.broadcastMessage(content);
   } else {
-    console.log('Error: Cannot find theatre connection')
+    console.log('Error: Cannot find theatre connection');
   }
 }
 

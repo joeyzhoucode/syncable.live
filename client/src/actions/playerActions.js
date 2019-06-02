@@ -1,5 +1,3 @@
-import theatreConnection from "../utils/theatreConnection.js";
-
 export const PLAYER_MOUNT = 'PLAYER_MOUNT';
 export const PLAYER_SUBSCRIBE = 'PLAYER_SUBSCRIBE';
 export const PLAYER_RECIEVE = 'PLAYER_RECIEVE';
@@ -10,9 +8,7 @@ export function playerMount(player) {
 }
 
 export function playerSubscribe(viewerId, theatreCode, callback) {
-  const connection = new theatreConnection(viewerId, callback);
-  connection.openNewTheatre(theatreCode);
-  return { type: PLAYER_SUBSCRIBE, connection: connection };
+  return { type: PLAYER_SUBSCRIBE, viewerId: viewerId, theatreCode: theatreCode, callback: callback };
 }
 
 export function playerRecieve(data) {
