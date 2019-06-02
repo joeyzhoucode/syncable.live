@@ -27,6 +27,7 @@ export function messengerSubscribe(viewerId, callback, theatreCode) {
 }
 
 export function messengerRecieve(data) {
+  console.log(data);
   return { type: MESSENGER_RECIEVE, data: data };
 }
 

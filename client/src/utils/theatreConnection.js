@@ -4,6 +4,9 @@ const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "accessToken";
 const CLIENT = "client";
 
+export const COMMAND_PAYLOAD = "COMMAND";
+export const MESSAGE_PAYLOAD = "MESSAGE";
+
 function theatreConnection(viewerId, callback) {
   let accessToken = localStorage.getItem(ACCESS_TOKEN)
   let client = localStorage.getItem(CLIENT)
@@ -79,4 +82,4 @@ theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
   })
 }
 
-export default theatreConnection
+export default theatreConnection;

@@ -1,5 +1,6 @@
 import { initialState } from './rootReducer';
 import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
+import { COMMAND_PAYLOAD } from '../utils/theatreConnection';
 
 export default function player(state = initialState.player, action) {
   let newState;
@@ -17,6 +18,9 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_RECIEVE:
+      if(action.data.payload_type !== COMMAND_PAYLOAD) {
+        return state;
+      }
       const videoId = action.data.video_id || state.videoId;
       const videoSeek = action.data.seek_seconds || 0;
       const videoState = action.data.state || "pause";

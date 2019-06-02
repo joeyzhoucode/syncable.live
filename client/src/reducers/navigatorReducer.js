@@ -6,6 +6,7 @@ import {
   MESSENGER_RECIEVE,
   MESSENGER_BROADCAST,
   } from '../actions/navigatorActions';
+import { MESSAGE_PAYLOAD } from '../utils/theatreConnection';
 
 export default function navigator(state = initialState.navigator, action) {
   let newState;
@@ -33,6 +34,9 @@ export default function navigator(state = initialState.navigator, action) {
       }
       return newState;
     case MESSENGER_RECIEVE:
+      if(action.data.payload_type !== MESSAGE_PAYLOAD) {
+        return state;
+      }
       let newMessages = state.messages;
       newMessages.push({
         viewerName: action.data.viewer.first_name + " " + action.data.viewer.last_name,
