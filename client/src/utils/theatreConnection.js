@@ -27,10 +27,10 @@ theatreConnection.prototype.command = function(videoId, seekSeconds, state, thea
   }
 }
 
-theatreConnection.prototype.message = function(message, theatreCode) {
+theatreConnection.prototype.message = function(content, theatreCode) {
   let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.broadcastMessage(message);
+    theatreConnObj.conn.broadcastMessage(content);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
@@ -69,11 +69,11 @@ theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
         viewer_id: scope.viewerId
       })
     },
-    broadcastMessage: function(message) {
+    broadcastMessage: function(content) {
       return this.perform('broadcast_message', {
         theatre_code: theatreCode,
         viewer_id: scope.viewerId,
-        message: message
+        content: content
       })
     }
   })
