@@ -1,6 +1,6 @@
 # syncable.live
 
-This is the source code for [syncable.live](https://syncable.live/welcome).
+This is the source code for [syncable.live](http://syncable.live/welcome).
 
 ## Getting started
 
