@@ -41,9 +41,6 @@ class Navigator extends React.Component {
     }
   };
   componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      const ps = new PerfectScrollbar(this.refs.mainPanel);
-    }
     window.addEventListener("resize", this.resizeFunction);
     this.props.profileActions.profileFetch();
     this.props.homeActions.theatreFetch();
@@ -55,11 +52,14 @@ class Navigator extends React.Component {
         this.props.navigatorActions.navigatorDrawerClose();
       }
     }
-    if (this.props.profile.id && !this.props.navigator.connection) {
-      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, "Global");
-    }
-    if (this.props.profile.id && this.props.path && e.path != this.props.path) {
-      this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path);
+    
+    if (this.props.profile.id) {
+      if (!this.props.navigator.connection) {
+        this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, "Global");
+      }
+      if (this.props.path && e.path != this.props.path) {
+        this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.navigatorActions.messengerRecieve, this.props.path);
+      }
     }
   }
   componentWillUnmount() {

@@ -16,7 +16,6 @@ export function playerSubscribe(viewerId, theatreCode, callback) {
 }
 
 export function playerRecieve(data) {
-  console.log(data);
   return { type: PLAYER_RECIEVE, data: data };
 }
 

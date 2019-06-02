@@ -24,7 +24,7 @@ function theatreConnection(viewerId, callback) {
 theatreConnection.prototype.command = function(videoId, seekSeconds, state, theatreCode) {
   let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.broadcastCommand(videoId, seekSeconds, state);
+    theatreConnObj.broadcastCommand(videoId, seekSeconds, state);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
@@ -33,7 +33,7 @@ theatreConnection.prototype.command = function(videoId, seekSeconds, state, thea
 theatreConnection.prototype.message = function(content, theatreCode) {
   let theatreConnObj = this.theatreConnections[theatreCode]
   if (theatreConnObj) {
-    theatreConnObj.conn.broadcastMessage(content);
+    theatreConnObj.broadcastMessage(content);
   } else {
     console.log('Error: Cannot find theatre connection')
   }
@@ -41,12 +41,12 @@ theatreConnection.prototype.message = function(content, theatreCode) {
 
 theatreConnection.prototype.openNewTheatre = function(theatreCode) {
   if (theatreCode !== undefined) {
-    this.theatreConnections[theatreCode] = {conn: this.createTheatreConnection(theatreCode)};
+    this.theatreConnections[theatreCode] = this.createTheatreConnection(theatreCode);
   }
 }
 
 theatreConnection.prototype.disconnect = function() {
-  Object.values(this.theatreConnections).forEach(c => c.conn.consumer.connection.close())
+  Object.values(this.theatreConnections).forEach(c => c.consumer.connection.close());
 }
 
 theatreConnection.prototype.createTheatreConnection = function(theatreCode) {

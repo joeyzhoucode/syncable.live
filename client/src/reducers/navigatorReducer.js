@@ -3,9 +3,11 @@ import {
   NAVIGATOR_DRAWER_TOGGLE,
   NAVIGATOR_DRAWER_CLOSE,
   MESSENGER_SUBSCRIBE,
+  MESSENGER_UNSUBSCRIBE,
   MESSENGER_RECIEVE,
   MESSENGER_BROADCAST,
   } from '../actions/navigatorActions';
+import theatreConnection from "../utils/theatreConnection";
 import { MESSAGE_PAYLOAD } from '../utils/theatreConnection';
 
 export default function navigator(state = initialState.navigator, action) {
@@ -26,13 +28,27 @@ export default function navigator(state = initialState.navigator, action) {
     default:
       return state;
     case MESSENGER_SUBSCRIBE:
-      const connection = state.connection || action.connection;
+      const connection = state.connection || new theatreConnection(action.viewerId, action.callback);
+      if(connection.theatreConnections[action.theatreCode]) {
+        return state;
+      }
+
       connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
         connection: connection,
       }
       return newState;
+    case MESSENGER_UNSUBSCRIBE:
+      if(state.connection) {
+        state.connection.disconnect();
+        delete state.connection;
+      }
+      newState = {
+        ...state,
+        connection: null,
+      }
+      return newState
     case MESSENGER_RECIEVE:
       if(action.data.payload_type !== MESSAGE_PAYLOAD) {
         return state;
