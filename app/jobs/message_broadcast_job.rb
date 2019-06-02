@@ -1,11 +1,11 @@
 class MessageBroadcastJob < ApplicationJob
   queue_as :default
-  MESSAGE_PAYLOAD = "MESSAGE"
+  MESSAGE_TYPE = "MESSAGE"
 
   def perform(message)
     payload = {
       theatre_code: message.theatre.code,
-      payload_type: MESSAGE_PAYLOAD,
+      payload_type: MESSAGE_TYPE,
       content: message.content,
       viewer: message.viewer,
       audience: message.theatre.viewers.collect(&:id)

@@ -1,7 +1,7 @@
 import { initialState } from './rootReducer';
 import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
 import theatreConnection from "../utils/theatreConnection.js";
-import { COMMAND_PAYLOAD } from '../utils/theatreConnection';
+import { COMMAND_TYPE } from '../utils/theatreConnection';
 
 export default function player(state = initialState.player, action) {
   let newState;
@@ -13,7 +13,7 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_SUBSCRIBE:
-      const connection = state.connection || new theatreConnection(action.viewerId, action.callback);
+      const connection = state.connection || new theatreConnection(action.viewerId, action.callback, COMMAND_TYPE);
       connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
@@ -21,7 +21,7 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_RECIEVE:
-      if(action.data.payload_type !== COMMAND_PAYLOAD) {
+      if(action.data.payload_type !== COMMAND_TYPE) {
         return state;
       }
       const videoId = action.data.video_id || state.videoId;

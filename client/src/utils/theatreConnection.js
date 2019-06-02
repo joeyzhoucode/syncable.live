@@ -4,10 +4,10 @@ const BASE_URL = "syncable.live"; // "syncable.live";
 const ACCESS_TOKEN = "accessToken";
 const CLIENT = "client";
 
-export const COMMAND_PAYLOAD = "COMMAND";
-export const MESSAGE_PAYLOAD = "MESSAGE";
+export const COMMAND_TYPE = "COMMAND";
+export const MESSAGE_TYPE = "MESSAGE";
 
-function theatreConnection(viewerId, callback) {
+function theatreConnection(viewerId, callback, connectionType) {
   let accessToken = localStorage.getItem(ACCESS_TOKEN);
   let client = localStorage.getItem(CLIENT);
 
@@ -16,6 +16,7 @@ function theatreConnection(viewerId, callback) {
 
   this.viewerId = viewerId;
   this.callback = callback;
+  this.connectionType = connectionType;
 
   this.connection = ActionCable.createConsumer(wsUrl);
   this.theatreConnections = {};
@@ -60,10 +61,10 @@ theatreConnection.prototype.createTheatreConnection = function(theatreCode) {
   var scope = this
   return this.connection.subscriptions.create({channel: 'TheatreChannel', theatre_code: theatreCode, viewer_id: scope.viewerId}, {
     connected: function() {
-      console.log('connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log(this.connectionType + ' connected to TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     disconnected: function() {
-      console.log('disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
+      console.log(this.connectionType +  ' disconnected from TheatreChannel. Theatre code: ' + theatreCode + '.')
     },
     received: function(data) {
       if (data.audience.indexOf(scope.viewerId) !== -1) {

@@ -8,7 +8,7 @@ import {
   MESSENGER_BROADCAST,
   } from '../actions/navigatorActions';
 import theatreConnection from "../utils/theatreConnection";
-import { MESSAGE_PAYLOAD } from '../utils/theatreConnection';
+import { MESSAGE_TYPE } from '../utils/theatreConnection';
 
 export default function navigator(state = initialState.navigator, action) {
   let newState;
@@ -28,7 +28,7 @@ export default function navigator(state = initialState.navigator, action) {
     default:
       return state;
     case MESSENGER_SUBSCRIBE:
-      const connection = state.connection || new theatreConnection(action.viewerId, action.callback);
+      const connection = state.connection || new theatreConnection(action.viewerId, action.callback, MESSAGE_TYPE);
       connection.openNewTheatre(action.theatreCode);
       newState = {
         ...state,
@@ -41,7 +41,7 @@ export default function navigator(state = initialState.navigator, action) {
       }
       return state;
     case MESSENGER_RECIEVE:
-      if(action.data.payload_type !== MESSAGE_PAYLOAD) {
+      if(action.data.payload_type !== MESSAGE_TYPE) {
         return state;
       }
       let newMessages = state.messages;

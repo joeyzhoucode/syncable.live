@@ -1,11 +1,11 @@
 class CommandBroadcastJob < ApplicationJob
   queue_as :default
-  COMMAND_PAYLOAD = "COMMAND"
+  COMMAND_TYPE = "COMMAND"
 
   def perform(command)
     payload = {
       theatre_code: command.theatre.code,
-      payload_type: COMMAND_PAYLOAD,
+      payload_type: COMMAND_TYPE,
       video_id: command.video_id,
       seek_seconds: command.seek_seconds,
       state: command.state,
