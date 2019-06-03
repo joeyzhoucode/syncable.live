@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/welcome')
 
   get 'welcome', to: 'static#index'
-  root to: 'static#index', constraints: ->(request) do
+  root to: redirect('/welcome'), constraints: ->(request) do
     request.session[:viewer_id].nil? && !request.xhr? && request.format.html?
   end
 
