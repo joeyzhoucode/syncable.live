@@ -8,8 +8,12 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/welcome')
 
   get 'welcome', to: 'static#index'
-  get '*path', to: redirect('/welcome'), constraints: ->(request) do
-    request.session[:viewer_id].nil?
+  root to: 'static#index', constraints: ->(request) do
+    request.session[:viewer_id].nil? && !request.xhr? && request.format.html?
+  end
+
+  get '*path', to: redirect('/login'), constraints: ->(request) do
+    request.session[:viewer_id].nil? && !request.xhr? && request.format.html?
   end
 
   scope '/api' do

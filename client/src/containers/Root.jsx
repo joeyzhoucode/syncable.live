@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Provider } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 
 // core components
@@ -11,6 +11,7 @@ const Root = ({ store, history }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
+        <Redirect exact from="/" to="/home" />
         <Route path="/" component={Navigator} />
       </Switch>
     </ConnectedRouter>
