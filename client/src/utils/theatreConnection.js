@@ -43,6 +43,8 @@ theatreConnection.prototype.message = function(content, theatreCode) {
 theatreConnection.prototype.openNewTheatre = function(theatreCode) {
   if (theatreCode !== undefined && !(theatreCode in this.theatreConnections)) {
     this.theatreConnections[theatreCode] = this.createTheatreConnection(theatreCode);
+  } else {
+    this.theatreConnections[theatreCode].consumer.connect();
   }
 }
 
