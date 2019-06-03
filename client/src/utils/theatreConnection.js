@@ -43,18 +43,13 @@ theatreConnection.prototype.message = function(content, theatreCode) {
 theatreConnection.prototype.openNewTheatre = function(theatreCode) {
   if (theatreCode !== undefined && !(theatreCode in this.theatreConnections)) {
     this.theatreConnections[theatreCode] = this.createTheatreConnection(theatreCode);
-  } else {
-    this.theatreConnections[theatreCode].consumer.connection.open();
-    for (const c in this.theatreConnections) {
-      if (c !== theatreCode) {
-        this.theatreConnections[c].consumer.connection.close();
-      }
-    }
   }
 }
 
 theatreConnection.prototype.disconnect = function() {
-  Object.values(this.theatreConnections).forEach(c => c.consumer.connection.close());
+  Object.values(this.theatreConnections).forEach(c => {
+    c.consumer.disconnect();
+  });
 }
 
 theatreConnection.prototype.createTheatreConnection = function(theatreCode) {

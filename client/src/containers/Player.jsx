@@ -19,6 +19,10 @@ class Player extends React.Component {
     this.props.playerMount(this.player);
   }
 
+  componentWillUnmount() {
+    this.props.playerUnsubscribe();
+  }
+
   render() {
     const { classes } = this.props;
     const customInputId = "videoId";

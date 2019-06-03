@@ -51,6 +51,7 @@ class Navigator extends React.Component {
       if (this.props.navigator.mobileOpen) {
         this.props.navigatorActions.navigatorDrawerClose();
       }
+      this.props.navigatorActions.messengerUnsubscribe();
       this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.path || "Global", this.props.navigatorActions.messengerRecieve);
     }
     

@@ -1,5 +1,5 @@
 import { initialState } from './rootReducer';
-import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
+import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_UNSUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
 import theatreConnection from "../utils/theatreConnection.js";
 import { COMMAND_TYPE } from '../utils/theatreConnection';
 
@@ -18,6 +18,16 @@ export default function player(state = initialState.player, action) {
       newState = {
         ...state,
         connection: connection,
+      }
+      return newState;
+    case PLAYER_UNSUBSCRIBE:
+      if(state.connection) {
+        state.connection.disconnect();
+        delete state.connection;
+      }
+      newState = {
+        ...state,
+        connection: null,
       }
       return newState;
     case PLAYER_RECIEVE:
