@@ -11,6 +11,10 @@ import rootReducer from './reducers/rootReducer';
 import Root from "./containers/Root.jsx";
 import "./assets/css/syncable-react.css?v=0.1.0";
 
+if(window.location.pathname === '/') {
+  window.location.href='/welcome';
+}
+
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const hist = createBrowserHistory();
 const store = createStore(
