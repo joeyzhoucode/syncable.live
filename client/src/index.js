@@ -18,8 +18,4 @@ const store = createStore(
   composeEnhancer(applyMiddleware(thunk), applyMiddleware(routerMiddleware(hist)))
 );
 
-if(window.location.pathname === '/') {
-  window.location.href='/welcome';
-} else {
-  render(<Root store={store} history={hist} />, document.getElementById("root"));
-}
+render(<Root store={store} history={hist} />, document.getElementById("root"));

@@ -20,6 +20,6 @@ Rails.application.routes.draw do
   end
 
   get '*path', to: "application#index", constraints: ->(request) do
-    !request.xhr? && request.format.html?
+    request.session[:viewer_id] && !request.xhr? && request.format.html?
   end
 end
