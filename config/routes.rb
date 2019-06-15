@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get 'theatres/new', to: 'theatres#new'
     resources :theatres
     resources :viewers
+    resources :messages
+    resources :commands
   end
 
   get '*path', to: "application#index", constraints: ->(request) do
