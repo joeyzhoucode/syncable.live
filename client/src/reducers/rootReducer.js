@@ -29,6 +29,7 @@ export const initialState = {
     mobileOpen: false,
     connection: null,
     messages: [],
+    messageInput: "",
   }
 };
 

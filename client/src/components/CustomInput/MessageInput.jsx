@@ -57,15 +57,17 @@ function MessageInput({ ...props }) {
             disabled: classes.disabled,
             underline: underlineClasses
           }}
-          id={id}
+          value={props.messageInput}
           multiline
           onKeyPress={(target) => {
             if(target.charCode === 13) {
               target.preventDefault();
-              const message = document.getElementById(id).value;
-              props.sendContent({ message: message, theatreCode: props.theatreCode});
-              document.getElementById(id).value = "";
+              props.sendContent({ message: props.messageInput, theatreCode: props.theatreCode});
+              props.updateMessageInput("");
             }
+          }}
+          onChange={(event) => {
+            props.updateMessageInput(event.target.value);
           }}
           {...inputProps}
         />
@@ -76,8 +78,8 @@ function MessageInput({ ...props }) {
         ) : null}
       </FormControl>
       <IconButton onClick={() => {
-        const message = document.getElementById(id).value;
-        props.sendContent({ message: message, theatreCode: props.theatreCode});
+        props.sendContent({ message: props.messageInput, theatreCode: props.theatreCode});
+        props.updateMessageInput("");
       }}>
         <Send className={classes.iconButton} />
       </IconButton>

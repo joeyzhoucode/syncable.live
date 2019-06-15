@@ -75,6 +75,8 @@ class Navigator extends React.Component {
           messages={this.props.navigator.messages}
           sendContent={this.props.navigatorActions.messengerBroadcast}
           theatreCode={this.props.path || "Global"}
+          messageInput={this.props.navigator.messageInput}
+          updateMessageInput={this.props.navigatorActions.updateMessageInput}
           {...rest}
         />}
         <div className={classes.mainPanel} ref="mainPanel">

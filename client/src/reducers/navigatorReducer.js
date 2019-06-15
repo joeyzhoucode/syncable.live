@@ -2,6 +2,7 @@ import { initialState } from './rootReducer';
 import { 
   NAVIGATOR_DRAWER_TOGGLE,
   NAVIGATOR_DRAWER_CLOSE,
+  UPDATE_MESSAGE_INPUT,
   MESSENGER_FETCH_SUCCESS,
   MESSENGER_SUBSCRIBE,
   MESSENGER_UNSUBSCRIBE,
@@ -27,8 +28,12 @@ export default function navigator(state = initialState.navigator, action) {
         mobileOpen: false,
       }
       return newState;
-    default:
-      return state;
+    case UPDATE_MESSAGE_INPUT:
+      newState = {
+        ...state,
+        messageInput: action.messageInput,
+      }
+      return newState;
     case MESSENGER_FETCH_SUCCESS:
       newMessages = [];
       for (const message of action.data){
@@ -76,6 +81,8 @@ export default function navigator(state = initialState.navigator, action) {
       return newState;
     case MESSENGER_BROADCAST:
       state.connection.message(action.data.message, action.data.theatreCode);
+      return state;
+    default:
       return state;
   }
 }

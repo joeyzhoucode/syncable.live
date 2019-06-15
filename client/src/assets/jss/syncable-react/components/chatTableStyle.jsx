@@ -52,7 +52,7 @@ const chatTableStyle = theme => ({
   tableResponsive: {
     padding: "0px 15px",
     width: "calc(100% - 30px)",
-    height: "calc(100vh - 424px)",
+    height: "calc(100vh - 384px)",
     overflowX: "hidden"
   },
   tableResponsiveExpanded: {

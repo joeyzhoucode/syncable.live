@@ -2,6 +2,7 @@ import { push } from 'connected-react-router';
 
 export const NAVIGATOR_DRAWER_TOGGLE = 'NAVIGATOR_DRAWER_TOGGLE';
 export const NAVIGATOR_DRAWER_CLOSE = 'NAVIGATOR_DRAWER_CLOSE';
+export const UPDATE_MESSAGE_INPUT = 'UPDATE_MESSAGE_INPUT';
 export const MESSENGER_FETCH_SUCCESS = 'MESSENGER_FETCH_SUCCESS';
 export const MESSENGER_SUBSCRIBE = 'MESSENGER_SUBSCRIBE';
 export const MESSENGER_UNSUBSCRIBE = 'MESSENGER_UNSUBSCRIBE';
@@ -20,6 +21,10 @@ export function historyPush(path) {
   return dispatch => {
     dispatch(push(path));
   }
+}
+
+export function updateMessageInput(messageInput) {
+  return { type: UPDATE_MESSAGE_INPUT, messageInput: messageInput };
 }
 
 export function messengerFetch(theatreCode) {

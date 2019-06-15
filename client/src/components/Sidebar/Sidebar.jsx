@@ -48,7 +48,12 @@ const Sidebar = ({ ...props }) => {
               <AdminNavbarLinks historyPush={props.historyPush} />
             </div>
             <ChatTable tableData={props.messages} />
-            <ChatFooter sendContent={props.sendContent} theatreCode={props.theatreCode} />
+            <ChatFooter
+              sendContent={props.sendContent}
+              theatreCode={props.theatreCode}
+              messageInput={props.messageInput}
+              updateMessageInput={props.updateMessageInput}
+            />
           </div>
         </Drawer>
       </Hidden>
@@ -61,7 +66,12 @@ const Sidebar = ({ ...props }) => {
         >
           {brand}
           <ChatTable tableData={props.messages} sidebar />
-          <ChatFooter sendContent={props.sendContent} theatreCode={props.theatreCode} />
+          <ChatFooter
+            sendContent={props.sendContent}
+            theatreCode={props.theatreCode}
+            messageInput={props.messageInput}
+            updateMessageInput={props.updateMessageInput}
+          />
         </Drawer>
       </Hidden>
     </div>

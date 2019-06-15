@@ -9,7 +9,6 @@ import MessageInput from "components/CustomInput/MessageInput.jsx";
 
 function ChatFooter({ ...props }) {
   const { classes } = props;
-  const customInputId = "messageInput";
   return (
     <footer className={classes.footer}>
       <div className={classes.container}>
@@ -25,7 +24,8 @@ function ChatFooter({ ...props }) {
             }}
             sendContent={props.sendContent}
             theatreCode={props.theatreCode}
-            id={customInputId}
+            messageInput={props.messageInput}
+            updateMessageInput={props.updateMessageInput}
           />
       </div>
     </footer>
