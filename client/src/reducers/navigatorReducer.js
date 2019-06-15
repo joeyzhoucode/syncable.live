@@ -2,6 +2,7 @@ import { initialState } from './rootReducer';
 import { 
   NAVIGATOR_DRAWER_TOGGLE,
   NAVIGATOR_DRAWER_CLOSE,
+  MESSENGER_FETCH_SUCCESS,
   MESSENGER_SUBSCRIBE,
   MESSENGER_UNSUBSCRIBE,
   MESSENGER_RECIEVE,
@@ -12,6 +13,7 @@ import { MESSAGE_TYPE } from '../utils/theatreConnection';
 
 export default function navigator(state = initialState.navigator, action) {
   let newState;
+  let newMessages;
   switch (action.type) {
     case NAVIGATOR_DRAWER_TOGGLE:
       newState = {
@@ -27,6 +29,19 @@ export default function navigator(state = initialState.navigator, action) {
       return newState;
     default:
       return state;
+    case MESSENGER_FETCH_SUCCESS:
+      newMessages = state.messages;
+      for (const message of action.data){
+        newMessages.push({
+          viewerName: message.first_name + " " + message.last_name,
+          content: message.content,
+        })
+      }
+      newState = {
+        ...state,
+        messages: newMessages,
+      }
+      return newState;
     case MESSENGER_SUBSCRIBE:
       const connection = state.connection || new theatreConnection(action.viewerId, action.callback, MESSAGE_TYPE);
       connection.openNewTheatre(action.theatreCode);
@@ -49,7 +64,7 @@ export default function navigator(state = initialState.navigator, action) {
       if(action.data.payload_type !== MESSAGE_TYPE) {
         return state;
       }
-      let newMessages = state.messages;
+      newMessages = state.messages;
       newMessages.push({
         viewerName: action.data.viewer.first_name + " " + action.data.viewer.last_name,
         content: action.data.content,

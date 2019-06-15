@@ -2,6 +2,7 @@ import { push } from 'connected-react-router';
 
 export const NAVIGATOR_DRAWER_TOGGLE = 'NAVIGATOR_DRAWER_TOGGLE';
 export const NAVIGATOR_DRAWER_CLOSE = 'NAVIGATOR_DRAWER_CLOSE';
+export const MESSENGER_FETCH_SUCCESS = 'MESSENGER_FETCH_SUCCESS';
 export const MESSENGER_SUBSCRIBE = 'MESSENGER_SUBSCRIBE';
 export const MESSENGER_UNSUBSCRIBE = 'MESSENGER_UNSUBSCRIBE';
 export const MESSENGER_RECIEVE = 'MESSENGER_RECIEVE';
@@ -19,6 +20,25 @@ export function historyPush(path) {
   return dispatch => {
     dispatch(push(path));
   }
+}
+
+export function messengerFetch(theatreCode) {
+  return dispatch => {
+    return fetch('/api/messages/' + theatreCode, {
+      method: 'GET',
+      mode: 'cors',
+      credientials: 'include',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => dispatch(messengerFetchSuccess(data)));
+  }
+}
+
+export function messengerFetchSuccess(data) {
+  return { type: MESSENGER_FETCH_SUCCESS, data: data };
 }
 
 export function messengerSubscribe(viewerId, theatreCode, callback) {

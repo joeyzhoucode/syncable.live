@@ -52,10 +52,12 @@ class Navigator extends React.Component {
         this.props.navigatorActions.navigatorDrawerClose();
       }
       this.props.navigatorActions.messengerUnsubscribe();
+      this.props.navigatorActions.messengerFetch(this.props.path || "Global");
       this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.path || "Global", this.props.navigatorActions.messengerRecieve);
     }
     
     if (this.props.profile.id && !this.props.navigator.connection) {
+      this.props.navigatorActions.messengerFetch(this.props.path || "Global");
       this.props.navigatorActions.messengerSubscribe(this.props.profile.id, this.props.path || "Global", this.props.navigatorActions.messengerRecieve);
     }
   }
