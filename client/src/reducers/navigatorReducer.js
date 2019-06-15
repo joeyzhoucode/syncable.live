@@ -30,7 +30,7 @@ export default function navigator(state = initialState.navigator, action) {
     default:
       return state;
     case MESSENGER_FETCH_SUCCESS:
-      newMessages = state.messages;
+      newMessages = [];
       for (const message of action.data){
         newMessages.push({
           viewerName: message.first_name + " " + message.last_name,
