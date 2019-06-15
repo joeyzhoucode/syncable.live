@@ -12,12 +12,7 @@ import chatTableStyle from "assets/jss/syncable-react/components/chatTableStyle.
 function ChatTable({ ...props }) {
   const { classes, tableData, sidebar } = props;
   return (
-    <div className={ sidebar ? classes.tableResponsiveExpanded : classes.tableResponsive } ref={(el) => {
-      if(el) {
-        debugger;
-        el.scrollTop = el.scrollHeight;
-      }
-    }} >
+    <div className={ sidebar ? classes.tableResponsiveExpanded : classes.tableResponsive } ref={(el) => { if(el) { el.scrollTop = el.scrollHeight; }}} >
       <Table className={classes.table}>
         <TableBody>
           {tableData.map((prop, key) => {
