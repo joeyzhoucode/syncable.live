@@ -33,8 +33,6 @@ const chatTableStyle = theme => ({
   },
   table: {
     marginBottom: "0",
-    width: "100%",
-    maxWidth: "100%",
     backgroundColor: "transparent",
     borderSpacing: "0",
     borderCollapse: "collapse"
@@ -52,9 +50,16 @@ const chatTableStyle = theme => ({
     borderBottom: "0",
   },
   tableResponsive: {
-    width: "100%",
+    padding: "0px 15px",
+    width: "calc(100% - 30px)",
+    height: "calc(100vh - 300px)",
+    overflowX: "hidden"
+  },
+  tableResponsiveExpanded: {
+    padding: "0px 15px",
+    width: "calc(100% - 30px)",
     height: "100%",
-    overflowX: "auto"
+    overflowX: "hidden"
   }
 });
 

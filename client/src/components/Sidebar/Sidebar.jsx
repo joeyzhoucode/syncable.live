@@ -58,7 +58,7 @@ const Sidebar = ({ ...props }) => {
           classes={{ paper: classNames(classes.drawerPaper) }}
         >
           {brand}
-          <ChatTable tableData={props.messages} />
+          <ChatTable tableData={props.messages} sidebar />
           <ChatFooter sendContent={props.sendContent} theatreCode={props.theatreCode} />
         </Drawer>
       </Hidden>

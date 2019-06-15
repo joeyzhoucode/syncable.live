@@ -2,7 +2,8 @@ import {
   defaultFont,
   container,
   primaryColor,
-  grayColor
+  grayColor,
+  hexToRgb
 } from "assets/jss/syncable-react.jsx";
 
 const footerStyle = {
@@ -30,8 +31,20 @@ const footerStyle = {
   },
   footer: {
     bottom: "0",
-    borderTop: "1px solid " + grayColor[11],
-    padding: "15px 0",
+    padding: "15px 15px",
+    width: "calc(100% - 30px)",
+    zIndex: "4",
+
+    "&:before": {
+      content: '""',
+      position: "absolute",
+
+      height: "1px",
+      right: "15px",
+      width: "calc(100% - 30px)",
+      backgroundColor: "rgba(" + hexToRgb(grayColor[2]) + ", 0.3)"
+    },
+
     ...defaultFont
   },
   container,

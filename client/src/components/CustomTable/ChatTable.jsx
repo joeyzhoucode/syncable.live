@@ -10,9 +10,9 @@ import TableCell from "@material-ui/core/TableCell";
 import chatTableStyle from "assets/jss/syncable-react/components/chatTableStyle.jsx";
 
 function ChatTable({ ...props }) {
-  const { classes, tableData } = props;
+  const { classes, tableData, sidebar } = props;
   return (
-    <div className={classes.tableResponsive}>
+    <div className={ sidebar ? classes.tableResponsiveExpanded : classes.tableResponsive }>
       <Table className={classes.table}>
         <TableBody>
           {tableData.map((prop, key) => {

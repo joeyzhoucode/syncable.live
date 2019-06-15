@@ -66,7 +66,7 @@ const messageInputStyle = {
     margin: "0",
     position: "relative",
     verticalAlign: "unset",
-    width: "242px",
+    width: "212px",
   }
 };
 
