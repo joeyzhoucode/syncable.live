@@ -31,7 +31,7 @@ const footerStyle = {
   },
   footer: {
     bottom: "0",
-    padding: "15px 15px",
+    padding: "0px 15px",
     width: "calc(100% - 30px)",
     zIndex: "4",
 
