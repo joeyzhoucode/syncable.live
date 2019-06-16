@@ -28,13 +28,10 @@ function TheatreTabContent({ ...props }) {
       <TableBody>
         <TableRow className={classes.tableRow}>
           <TableCell className={tableCellClasses}>
-            <Add />
+            <Add className={classes.tableActionButtonIcon + " " + classes.edit}/>
           </TableCell>
           <TableCell className={tableCellClasses}>
-            {props.newTheatreCode}
-          </TableCell>
-          <TableCell className={tableCellClasses}>
-            {"http://syncable.live/player/" + props.newTheatreCode}
+            {"syncable.live/player/" + props.newTheatreCode}
           </TableCell>
           <TableCell className={classes.tableActions}>
             <Tooltip
@@ -62,13 +59,13 @@ function TheatreTabContent({ ...props }) {
         {props.theatres.map(t => (
           <TableRow key={t.id} className={classes.tableRow}>
             <TableCell className={tableCellClasses}>
-              <People />{t.viewers}
+              <People className={classes.tableActionButtonIcon + " " + classes.edit} />
+              <span className={classes.tableActionButtonIcon + " " + classes.edit}>
+                {t.viewers}
+              </span>
             </TableCell>
             <TableCell className={tableCellClasses}>
-              {t.code}
-            </TableCell>
-            <TableCell className={tableCellClasses}>
-              {"http://syncable.live/player/" + t.code}
+              {"syncable.live/player/" + t.code}
             </TableCell>
             <TableCell className={classes.tableActions}>
               <Tooltip
