@@ -123,7 +123,7 @@ class Home extends React.Component {
           </GridItem>
         </GridContainer>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
+          <GridItem xs={12} sm={12} md={9}>
             <CustomTabs
               title=""
               headerColor="primary"
@@ -166,6 +166,30 @@ class Home extends React.Component {
                 }
               ]}
             />
+          </GridItem>
+          <GridItem xs={12} sm={12} md={3}>
+            <Card chart>
+              <CardHeader color="danger">
+                <ChartistGraph
+                  className="ct-chart"
+                  data={completedTasksChart.data}
+                  type="Line"
+                  options={completedTasksChart.options}
+                  listener={completedTasksChart.animation}
+                />
+              </CardHeader>
+              <CardBody>
+                <h4 className={classes.cardTitle}>Connection Latency</h4>
+                <p className={classes.cardCategory}>
+                  Daily Latency Performance
+                </p>
+              </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> updated 2 hours ago
+                </div>
+              </CardFooter>
+            </Card>
           </GridItem>
         </GridContainer>
       </div>

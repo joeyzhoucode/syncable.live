@@ -40,8 +40,8 @@ const tasksStyle = {
     padding: "0"
   },
   tableActionButtonIcon: {
-    width: "17px",
-    height: "17px"
+    width: "16px",
+    height: "16px"
   },
   edit: {
     backgroundColor: "transparent",
