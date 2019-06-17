@@ -26,9 +26,9 @@ export default function player(state = initialState.player, action) {
       if(action.data.payload_type !== COMMAND_TYPE) {
         return state;
       }
-      videoId = action.data.video_id || state.videoId;
+      videoId = action.data.video_id || state.player.props.url;
       videoSeek = action.data.seek_seconds || 0;
-      videoState = action.data.state || "pause";
+      videoState = "pause";
       newState = {
         ...state,
         videoId: videoId,
@@ -58,7 +58,7 @@ export default function player(state = initialState.player, action) {
       if(action.data.payload_type !== COMMAND_TYPE) {
         return state;
       }
-      videoId = action.data.video_id || state.videoId;
+      videoId = action.data.video_id || state.player.props.url;
       videoSeek = action.data.seek_seconds || 0;
       videoState = action.data.state || "pause";
       newState = {
@@ -71,7 +71,7 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_BROADCAST:
-      videoId = action.data.videoId || state.videoId;
+      videoId = action.data.videoId || state.player.props.url;
       videoSeek = state.player.getCurrentTime() || 0.0;
       videoState = action.data.videoState || "pause";
       state.connection.command(videoId, videoSeek, videoState, action.data.theatreCode);
