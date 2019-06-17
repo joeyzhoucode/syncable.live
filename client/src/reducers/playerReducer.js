@@ -1,16 +1,40 @@
 import { initialState } from './rootReducer';
-import { PLAYER_MOUNT, PLAYER_SUBSCRIBE, PLAYER_UNSUBSCRIBE, PLAYER_RECIEVE, PLAYER_BROADCAST } from '../actions/playerActions';
 import theatreConnection from "../utils/theatreConnection.js";
 import { COMMAND_TYPE } from '../utils/theatreConnection';
+import {
+  PLAYER_MOUNT,
+  PLAYER_COMMAND_FETCH_SUCCESS,
+  PLAYER_SUBSCRIBE,
+  PLAYER_UNSUBSCRIBE,
+  PLAYER_RECIEVE,
+  PLAYER_BROADCAST
+  } from '../actions/playerActions';
 
 export default function player(state = initialState.player, action) {
   let newState;
+  let videoId;
+  let videoSeek;
+  let videoState;
   switch(action.type) {
     case PLAYER_MOUNT:
       newState = {
         ...state,
         player: action.player,
       }
+      return newState;
+    case PLAYER_COMMAND_FETCH_SUCCESS:
+      if(action.data.payload_type !== COMMAND_TYPE) {
+        return state;
+      }
+      videoId = action.data.video_id || state.videoId;
+      videoSeek = action.data.seek_seconds || 0;
+      videoState = action.data.state || "pause";
+      newState = {
+        ...state,
+        videoId: videoId,
+        videoState: videoState,
+      }
+      newState.player.seekTo(videoSeek);
       return newState;
     case PLAYER_SUBSCRIBE:
       const connection = state.connection || new theatreConnection(action.viewerId, action.callback, COMMAND_TYPE);
@@ -34,9 +58,9 @@ export default function player(state = initialState.player, action) {
       if(action.data.payload_type !== COMMAND_TYPE) {
         return state;
       }
-      const videoId = action.data.video_id || state.videoId;
-      const videoSeek = action.data.seek_seconds || 0;
-      const videoState = action.data.state || "pause";
+      videoId = action.data.video_id || state.videoId;
+      videoSeek = action.data.seek_seconds || 0;
+      videoState = action.data.state || "pause";
       newState = {
         ...state,
         videoId: videoId,
@@ -47,7 +71,10 @@ export default function player(state = initialState.player, action) {
       }
       return newState;
     case PLAYER_BROADCAST:
-      state.connection.command(action.data.videoId, state.player.getCurrentTime() || 0.0, action.data.videoState, action.data.theatreCode);
+      videoId = action.data.videoId || state.videoId;
+      videoSeek = state.player.getCurrentTime() || 0.0;
+      videoState = action.data.videoState || "pause";
+      state.connection.command(videoId, videoSeek, videoState, action.data.theatreCode);
       return state;
     default:
       return state;

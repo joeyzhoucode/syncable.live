@@ -1,4 +1,6 @@
 import { initialState } from './rootReducer';
+import theatreConnection from "../utils/theatreConnection";
+import { MESSAGE_TYPE } from '../utils/theatreConnection';
 import { 
   NAVIGATOR_DRAWER_TOGGLE,
   NAVIGATOR_DRAWER_CLOSE,
@@ -9,8 +11,6 @@ import {
   MESSENGER_RECIEVE,
   MESSENGER_BROADCAST,
   } from '../actions/navigatorActions';
-import theatreConnection from "../utils/theatreConnection";
-import { MESSAGE_TYPE } from '../utils/theatreConnection';
 
 export default function navigator(state = initialState.navigator, action) {
   let newState;

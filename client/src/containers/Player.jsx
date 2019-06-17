@@ -17,6 +17,7 @@ class Player extends React.Component {
   componentDidMount() {
     this.props.playerSubscribe(this.props.profile.id, this.props.path, this.props.playerRecieve);
     this.props.playerMount(this.player);
+    this.props.playerCommandFetch(this.props.path);
   }
 
   componentWillUnmount() {
